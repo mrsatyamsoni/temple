@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सुंदरकांड पाठ | श्री हनुमान मंदिर, कौशांबी</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700;900&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        :root {
+            --saffron: #FF6B00;
+            --deep-saffron: #E05500;
+            --maroon: #8B0000;
+            --gold: #D4A017;
+            --light-gold: #F5E6C8;
+            --cream: #FDF6EC;
+            --deep: #1A0A00;
+            --text: #2D1500;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Tiro Devanagari Hindi', Georgia, serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        .serif { font-family: 'Noto Serif Devanagari', serif; }
+
+        /* TOP BAR with back button */
+        .top-bar {
+            background: linear-gradient(90deg, var(--maroon), #5C0000);
+            padding: 14px 0;
+            position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+        }
+        .top-bar-inner {
+            max-width: 1100px; margin: 0 auto;
+            padding: 0 28px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .back-btn {
+            display: flex; align-items: center; gap: 10px;
+            color: white; text-decoration: none;
+            font-size: 15px; font-weight: 600;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 9px 18px; border-radius: 50px;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background: rgba(255,255,255,0.22);
+            transform: translateX(-3px);
+        }
+        .top-bar-title {
+            font-family: 'Noto Serif Devanagari', serif;
+            color: var(--gold); font-size: 18px; font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .top-bar-right {
+            color: rgba(255,255,255,0.7); font-size: 13px;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(160deg, var(--maroon) 0%, #3D0000 50%, #1A0A00 100%);
+            padding: 80px 28px 70px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: 'ॐ';
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 400px; color: rgba(255,255,255,0.03);
+            font-family: 'Noto Serif Devanagari', serif;
+            pointer-events: none;
+        }
+        .hero-diya { font-size: 50px; margin-bottom: 18px; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        .hero h1 {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 52px; font-weight: 900; color: white;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .hero .subtitle {
+            margin-top: 14px; color: var(--light-gold);
+            font-size: 20px; letter-spacing: 3px;
+        }
+        .hero-badges {
+            display: flex; align-items: center; justify-content: center;
+            gap: 16px; margin-top: 30px; flex-wrap: wrap;
+        }
+        .badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 20px; border-radius: 50px;
+            font-size: 14px; font-weight: 600;
+        }
+        .badge-gold { background: var(--gold); color: var(--maroon); }
+        .badge-outline { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
+
+        /* LAYOUT */
+        .main-content {
+            max-width: 1100px; margin: 0 auto;
+            padding: 60px 28px 80px;
+            display: grid; grid-template-columns: 1fr 360px; gap: 36px;
+        }
+
+        /* CARDS */
+        .card {
+            background: white; border-radius: 24px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.08);
+            overflow: hidden; margin-bottom: 28px;
+        }
+        .card-header {
+            padding: 24px 30px 20px;
+            border-bottom: 2px solid var(--light-gold);
+            display: flex; align-items: center; gap: 14px;
+        }
+        .card-header .ch-icon {
+            width: 48px; height: 48px; border-radius: 14px;
+            background: linear-gradient(135deg, var(--saffron), var(--maroon));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; color: white; flex-shrink: 0;
+        }
+        .card-header h2 {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 22px; font-weight: 800; color: var(--maroon);
+        }
+        .card-header p { font-size: 13px; color: #999; margin-top: 2px; }
+        .card-body { padding: 28px 30px; }
+
+        /* PATH STEPS */
+        .step-list { list-style: none; }
+        .step-item {
+            display: flex; gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #F0E8D8;
+        }
+        .step-item:last-child { border-bottom: none; }
+        .step-num {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--saffron), var(--maroon));
+            color: white; font-size: 14px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; margin-top: 2px;
+        }
+        .step-text h4 {
+            font-weight: 700; font-size: 16px; color: var(--maroon);
+            margin-bottom: 4px;
+        }
+        .step-text p { font-size: 14px; color: #666; line-height: 1.6; }
+
+        /* PUJA SAMAN - Checklist */
+        .saman-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+        }
+        .saman-item {
+            display: flex; align-items: flex-start; gap: 12px;
+            padding: 14px 16px 14px 0;
+            border-bottom: 1px dashed #EDE4D4;
+            cursor: pointer;
+        }
+        .saman-item:nth-child(odd) { padding-right: 24px; border-right: 1px dashed #EDE4D4; }
+        .saman-cb {
+            width: 22px; height: 22px; border-radius: 6px;
+            border: 2px solid var(--gold);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: all 0.2s;
+            margin-top: 1px;
+        }
+        .saman-cb.checked { background: var(--saffron); border-color: var(--saffron); }
+        .saman-cb.checked::after { content: '✓'; color: white; font-size: 13px; font-weight: 700; }
+        .saman-text { font-size: 15px; line-height: 1.4; color: var(--text); }
+        .saman-text small { display: block; font-size: 12px; color: #999; margin-top: 2px; }
+        .saman-counter {
+            text-align: right; padding: 14px 0 0;
+            font-size: 13px; color: var(--saffron); font-weight: 600;
+        }
+
+        /* IMPORTANT NOTES */
+        .note-list { list-style: none; }
+        .note-item {
+            display: flex; gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid #F0E8D8;
+            font-size: 15px; line-height: 1.6;
+        }
+        .note-item:last-child { border-bottom: none; }
+        .note-item .ni { color: var(--saffron); font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+        /* CHAUPAI BOX */
+        .chaupai-box {
+            background: linear-gradient(135deg, #FFF8E8, #FEF0CA);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 28px;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .chaupai-box .diya { font-size: 30px; margin-bottom: 10px; }
+        .chaupai-text {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 18px; color: var(--maroon);
+            font-weight: 700; line-height: 1.8;
+        }
+        .chaupai-note { font-size: 13px; color: #999; margin-top: 10px; }
+
+        /* SIDEBAR */
+        .sidebar {}
+
+        .booking-card {
+            background: linear-gradient(160deg, var(--maroon) 0%, #3D0000 100%);
+            border-radius: 24px;
+            padding: 32px 28px;
+            color: white; margin-bottom: 24px;
+            position: relative; overflow: hidden;
+        }
+        .booking-card::before {
+            content: '🙏';
+            position: absolute; right: -10px; bottom: -10px;
+            font-size: 100px; opacity: 0.12;
+        }
+        .booking-card h3 {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 22px; font-weight: 800;
+            margin-bottom: 8px; color: var(--light-gold);
+        }
+        .booking-card p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+        .booking-form .bf-group { margin-bottom: 14px; }
+        .booking-form label {
+            display: block; font-size: 11px; color: rgba(255,255,255,0.6);
+            text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 6px; font-weight: 600;
+        }
+        .booking-form input,
+        .booking-form select {
+            width: 100%; background: rgba(255,255,255,0.1);
+            border: 1.5px solid rgba(255,255,255,0.2);
+            border-radius: 10px; padding: 12px 16px;
+            color: white; font-size: 15px;
+            font-family: 'Tiro Devanagari Hindi', serif;
+            outline: none; transition: border-color 0.3s;
+        }
+        .booking-form input::placeholder { color: rgba(255,255,255,0.4); }
+        .booking-form input:focus,
+        .booking-form select:focus { border-color: var(--gold); }
+        .booking-form select option { background: var(--maroon); color: white; }
+        .booking-btn {
+            width: 100%; padding: 15px;
+            background: linear-gradient(135deg, var(--gold), var(--saffron));
+            color: white; border: none; border-radius: 12px;
+            font-size: 17px; font-weight: 700;
+            font-family: 'Noto Serif Devanagari', serif;
+            cursor: pointer; margin-top: 6px;
+            box-shadow: 0 6px 20px rgba(212,160,23,0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .booking-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(212,160,23,0.5); }
+
+        .info-sidebar-card {
+            background: white; border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            overflow: hidden; margin-bottom: 20px;
+        }
+        .isc-header {
+            background: var(--light-gold);
+            padding: 16px 22px;
+            font-family: 'Noto Serif Devanagari', serif;
+            font-weight: 700; font-size: 16px; color: var(--maroon);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .isc-body { padding: 20px 22px; }
+        .time-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 0; border-bottom: 1px dashed #EDE4D4;
+            font-size: 14px;
+        }
+        .time-row:last-child { border-bottom: none; }
+        .time-row .label { color: #888; }
+        .time-row .value { font-weight: 700; color: var(--maroon); }
+
+        .whatsapp-card {
+            background: #E8F8EF;
+            border: 2px solid #25D366;
+            border-radius: 20px; padding: 24px;
+            text-align: center;
+        }
+        .whatsapp-card .wa-icon { font-size: 40px; margin-bottom: 10px; }
+        .whatsapp-card h4 {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 17px; color: #1A5C2E; font-weight: 700; margin-bottom: 6px;
+        }
+        .whatsapp-card p { font-size: 13px; color: #555; margin-bottom: 16px; }
+        .wa-btn {
+            display: block; background: #25D366; color: white;
+            padding: 13px; border-radius: 12px;
+            text-decoration: none; font-weight: 700; font-size: 15px;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .wa-btn:hover { opacity: 0.9; transform: scale(0.99); }
+
+        /* DIVIDER */
+        .section-divider {
+            text-align: center;
+            color: var(--gold); font-size: 20px;
+            letter-spacing: 12px; opacity: 0.5;
+            margin: 8px 0;
+        }
+
+        /* FOOTER STRIP */
+        .footer-strip {
+            background: var(--deep);
+            color: rgba(255,255,255,0.5);
+            text-align: center; padding: 24px;
+            font-size: 13px;
+        }
+        .footer-strip .jai {
+            font-family: 'Noto Serif Devanagari', serif;
+            color: var(--gold); font-size: 16px;
+            letter-spacing: 2px; display: block;
+            margin-bottom: 8px;
+        }
+
+        @media(max-width: 768px) {
+            .main-content { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 34px; }
+            .saman-grid { grid-template-columns: 1fr; }
+            .saman-item:nth-child(odd) { border-right: none; }
+            .top-bar-right { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP BAR WITH BACK BUTTON -->
+<div class="top-bar">
+    <div class="top-bar-inner">
+        <a href="index.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i> मुख्य पृष्ठ पर जाएँ
+        </a>
+        <div class="top-bar-title">🛕 श्री हनुमान मंदिर • कौशांबी</div>
+        <div class="top-bar-right">हर मंगलवार • सुंदरकांड पाठ</div>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-diya">🪔</div>
+    <h1 class="serif">सुंदरकांड पाठ</h1>
+    <div class="subtitle">अपने नाम से करवाएँ • फल प्राप्त करें</div>
+    <div class="hero-badges">
+        <div class="badge badge-gold"><i class="fa-solid fa-fire"></i> हर मंगलवार</div>
+        <div class="badge badge-outline"><i class="fa-solid fa-clock"></i> शाम: 7:00 बजे</div>
+        <div class="badge badge-outline"><i class="fa-solid fa-location-dot"></i> गुवारा तैयबपुर, कौशांबी</div>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+    <!-- LEFT COLUMN -->
+    <div class="left-col">
+
+        <!-- Chaupai -->
+        <div class="chaupai-box">
+            <div class="diya">🕉️</div>
+            <div class="chaupai-text">
+                "मनोजवं मारुततुल्यवेगं<br>
+                जितेन्द्रियं बुद्धिमतां वरिष्ठम्"
+            </div>
+            <div class="chaupai-note">श्री हनुमान जी की कृपा से सभी मनोकामनाएँ पूर्ण होती हैं</div>
+        </div>
+
+        <!-- About Sundarkand -->
+        <div class="card">
+            <div class="card-header">
+                <div class="ch-icon"><i class="fa-solid fa-book-open"></i></div>
+                <div>
+                    <h2>सुंदरकांड पाठ क्या है?</h2>
+                    <p>जानकारी एवं महत्व</p>
+                </div>
+            </div>
+            <div class="card-body">
+                <p style="font-size:16px; line-height:1.9; color:#555; margin-bottom:20px;">
+                    सुंदरकांड रामचरितमानस का पाँचवाँ कांड है जिसमें हनुमान जी की लंका यात्रा का वर्णन है। इस पाठ को करने या सुनने से भक्त को विशेष फल की प्राप्ति होती है। मंदिर में प्रत्येक मंगलवार को विधिपूर्वक इस पाठ का आयोजन किया जाता है।
+                </p>
+                <div style="background: #FFF8E8; border-radius: 14px; padding: 20px; border-left: 4px solid var(--gold);">
+                    <p style="font-family: 'Noto Serif Devanagari', serif; font-size: 15px; color: var(--maroon); font-weight: 700; margin-bottom: 8px;">पाठ के फल 🌸</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 14px; color: #555;">
+                        <div>✦ संकट से मुक्ति</div>
+                        <div>✦ मनोकामना पूर्ति</div>
+                        <div>✦ परिवार में सुख-शांति</div>
+                        <div>✦ व्यापार में उन्नति</div>
+                        <div>✦ रोग से निवारण</div>
+                        <div>✦ बुरी शक्तियों से रक्षा</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Path Steps -->
+        <div class="card">
+            <div class="card-header">
+                <div class="ch-icon"><i class="fa-solid fa-list-ol"></i></div>
+                <div>
+                    <h2>पाठ कैसे करवाएँ?</h2>
+                    <p>चरण-दर-चरण प्रक्रिया</p>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="step-list">
+                    <li class="step-item">
+                        <div class="step-num">1</div>
+                        <div class="step-text">
+                            <h4>नाम दर्ज करवाएँ</h4>
+                            <p>WhatsApp या फॉर्म द्वारा अपना और परिवार का नाम, गोत्र भेजें। बुकिंग की पुष्टि होगी।</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-num">2</div>
+                        <div class="step-text">
+                            <h4>पूजा सामग्री लाएँ</h4>
+                            <p>नीचे दी गई सूची के अनुसार सामग्री तैयार करें। सामग्री मंदिर पर भी उपलब्ध होती है।</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-num">3</div>
+                        <div class="step-text">
+                            <h4>मंगलवार प्रातः पहुँचें</h4>
+                            <p>पाठ प्रातः 9:00 बजे आरंभ होता है। 8:45 तक पहुँचना उचित रहेगा।</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-num">4</div>
+                        <div class="step-text">
+                            <h4>पाठ में सम्मिलित हों</h4>
+                            <p>पंडित जी आपके नाम से संकल्प लेंगे एवं पाठ आरंभ होगा। श्रद्धापूर्वक बैठें।</p>
+                        </div>
+                    </li>
+                    <li class="step-item">
+                        <div class="step-num">5</div>
+                        <div class="step-text">
+                            <h4>आरती एवं प्रसाद</h4>
+                            <p>पाठ समाप्ति के बाद हनुमान जी की आरती होगी और प्रसाद वितरण किया जाएगा।</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PUJA SAMAN LIST (Interactive Checklist) -->
+        <div class="card">
+            <div class="card-header">
+                <div class="ch-icon"><i class="fa-solid fa-basket-shopping"></i></div>
+                <div>
+                    <h2>पूजा सामग्री सूची</h2>
+                    <p>सुंदरकांड पाठ हेतु आवश्यक सामान</p>
+                </div>
+            </div>
+            <div class="card-body">
+                <p style="font-size:14px; color:#888; margin-bottom:20px; padding: 12px 16px; background: #FFF8E8; border-radius: 10px;">
+                    💡 <strong>टिप:</strong> नीचे चेकबॉक्स पर क्लिक करके सामग्री को चेक करते जाएँ
+                </p>
+                <div class="saman-grid" id="samanGrid">
+
+                    <!-- Column items -->
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">लाल फूल (गेंदा / गुलाब) <small>1 माला या मुट्ठी भर</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">सिंदूर <small>1 पुड़िया</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">चंदन (लाल / सफेद) <small>थोड़ा</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">अगरबत्ती <small>1 पैकेट</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">धूप बत्ती <small>1 पैकेट</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">घी का दीपक <small>मिट्टी का दीया + घी</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">तुलसी पत्र <small>कुछ पत्तियाँ</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">पान के पत्ते <small>5–7 पत्ते</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">सुपारी <small>5–7 नग</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">नारियल (श्रीफल) <small>1 नारियल</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">केला <small>1 दर्जन या 5 नग</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">मिठाई / लड्डू <small>प्रसाद हेतु</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">पीला / लाल कपड़ा <small>छोटा टुकड़ा</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">रोली (कुमकुम) <small>1 पुड़िया</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">मौली (कलावा) <small>1 धागा</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">अक्षत (चावल) <small>मुट्ठी भर, अखंडित</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">जल (गंगाजल) <small>लोटा भर</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">कपूर <small>5–7 टिकिया</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">बेसन के लड्डू <small>हनुमान जी का प्रिय भोग</small></div>
+                    </div>
+                    <div class="saman-item" onclick="toggleSaman(this)">
+                        <div class="saman-cb"></div>
+                        <div class="saman-text">हनुमान चालीसा पुस्तक <small>वैकल्पिक</small></div>
+                    </div>
+                </div>
+                <div class="saman-counter" id="counter">0 / 20 सामग्री चेक की गई</div>
+            </div>
+        </div>
+
+        <!-- Important Notes -->
+        <div class="card">
+            <div class="card-header">
+                <div class="ch-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+                <div>
+                    <h2>महत्वपूर्ण बातें</h2>
+                    <p>पाठ से पहले ध्यान दें</p>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="note-list">
+                    <li class="note-item">
+                        <span class="ni">🌿</span>
+                        <span>पाठ के दिन <strong>शुद्ध, सात्विक भोजन</strong> ग्रहण करें। मांस, मछली, अंडा एवं तामसिक भोजन से बचें।</span>
+                    </li>
+                    <li class="note-item">
+                        <span class="ni">🧘</span>
+                        <span>पाठ में <strong>ध्यानपूर्वक</strong> बैठें। मोबाइल को साइलेंट रखें। पाठ के दौरान बाहर न जाएँ।</span>
+                    </li>
+                    <li class="note-item">
+                        <span class="ni">👗</span>
+                        <span>पीले, नारंगी या लाल वस्त्र पहन कर आना शुभ माना जाता है।</span>
+                    </li>
+                    <li class="note-item">
+                        <span class="ni">⏰</span>
+                        <span>पाठ <strong>9:00 AM</strong> पर आरंभ होता है। कृपया <strong>8:45 AM</strong> तक पहुँचें।</span>
+                    </li>
+                    <li class="note-item">
+                        <span class="ni">📿</span>
+                        <span>पाठ के दौरान <strong>हनुमान चालीसा</strong> या <strong>राम नाम</strong> का मानसिक जप करते रहें।</span>
+                    </li>
+                    <li class="note-item">
+                        <span class="ni">🤲</span>
+                        <span>पाठ के बाद <strong>प्रसाद सभी को बाँटें</strong>। घर ले जाकर परिवार को दें।</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <!-- Quick Booking -->
+        <div class="booking-card">
+            <h3 class="serif">पाठ बुकिंग करें</h3>
+            <p>अपने नाम से अगले मंगलवार का सुंदरकांड पाठ बुक करें</p>
+            <form class="booking-form" action="https://formsubmit.co/your-email@gmail.com" method="POST">
+                <div class="bf-group">
+                    <label>आपका पूरा नाम</label>
+                    <input type="text" name="name" placeholder="नाम लिखें" required>
+                </div>
+                <div class="bf-group">
+                    <label>मोबाइल नंबर</label>
+                    <input type="tel" name="phone" placeholder="WhatsApp नंबर" required>
+                </div>
+                <div class="bf-group">
+                    <label>गोत्र (वैकल्पिक)</label>
+                    <input type="text" name="gotra" placeholder="गोत्र का नाम">
+                </div>
+                <div class="bf-group">
+                    <label>कारण / मनोकामना</label>
+                    <select name="reason">
+                        <option value="">— चुनें —</option>
+                        <option>मनोकामना पूर्ति</option>
+                        <option>परिवार की सुख-शांति</option>
+                        <option>रोग निवारण</option>
+                        <option>व्यापार में उन्नति</option>
+                        <option>विशेष अवसर</option>
+                        <option>अन्य</option>
+                    </select>
+                </div>
+                <button type="submit" class="booking-btn">🙏 बुकिंग करें</button>
+            </form>
+        </div>
+
+        <!-- Timings -->
+        <div class="info-sidebar-card">
+            <div class="isc-header">
+                <i class="fa-solid fa-clock"></i> पाठ समय-सारिणी
+            </div>
+            <div class="isc-body">
+                <div class="time-row">
+                    <span class="label">पाठ दिन</span>
+                    <span class="value">हर मंगलवार</span>
+                </div>
+                <div class="time-row">
+                    <span class="label">आरंभ समय</span>
+                    <span class="value">9:00 AM</span>
+                </div>
+                <div class="time-row">
+                    <span class="label">अवधि</span>
+                    <span class="value">लगभग 2.5 घंटे</span>
+                </div>
+                <div class="time-row">
+                    <span class="label">आरती</span>
+                    <span class="value">पाठ के बाद</span>
+                </div>
+                <div class="time-row">
+                    <span class="label">प्रसाद वितरण</span>
+                    <span class="value">आरती के बाद</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="whatsapp-card">
+            <div class="wa-icon">💬</div>
+            <h4>सीधे WhatsApp करें</h4>
+            <p>बुकिंग, सामग्री या किसी भी जानकारी के लिए WhatsApp पर मैसेज करें</p>
+            <a href="https://wa.me/9876543210?text=नमस्ते%2C%20मैं%20सुंदरकांड%20पाठ%20के%20बारे%20में%20जानकारी%20चाहता%20हूँ" target="_blank" class="wa-btn">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp पर भेजें
+            </a>
+        </div>
+
+        <!-- Location -->
+        <div class="info-sidebar-card" style="margin-top:20px;">
+            <div class="isc-header">
+                <i class="fa-solid fa-location-dot"></i> मंदिर पता
+            </div>
+            <div class="isc-body">
+                <p style="font-size:14px; color:#555; line-height:1.7; margin-bottom:16px;">
+                    गुवारा तैयबपुर (करारी भरवारी रोड),<br>
+                    मंझनपुर, कौशांबी, UP – 212201
+                </p>
+                <a href="https://maps.app.goo.gl/AMgLTXeWYyVQu91K8" target="_blank"
+                   style="display:flex; align-items:center; gap:8px; background:var(--saffron); color:white; padding:12px 16px; border-radius:12px; text-decoration:none; font-weight:700; font-size:14px; justify-content:center;">
+                    <i class="fa-solid fa-map"></i> Google Maps पर देखें
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- FOOTER STRIP -->
+<div class="footer-strip">
+    <span class="jai">जय श्री राम • जय हनुमान</span>
+    <span>© 2002 – 2026 श्री हनुमान मंदिर, गुवारा तैयबपुर, कौशांबी &nbsp;|&nbsp; Feedback: <a href="https://instagram.com/mrsatyamsoni" target="_blank" style="color:var(--gold);">@mrsatyamsoni</a></span>
+</div>
+
+<script>
+    let checked = 0;
+    const total = document.querySelectorAll('.saman-item').length;
+
+    function toggleSaman(el) {
+        const cb = el.querySelector('.saman-cb');
+        const wasChecked = cb.classList.contains('checked');
+        cb.classList.toggle('checked');
+        checked += wasChecked ? -1 : 1;
+        document.getElementById('counter').textContent = checked + ' / ' + total + ' सामग्री चेक की गई';
+
+        // Visual feedback on the item
+        el.style.background = cb.classList.contains('checked') ? '#FFF3E8' : '';
+    }
+</script>
+</body>
+</html>
