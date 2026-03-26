@@ -625,7 +625,7 @@
             <div class="wa-icon">💬</div>
             <h4>सीधे WhatsApp करें</h4>
             <p>बुकिंग, सामग्री या किसी भी जानकारी के लिए WhatsApp पर मैसेज करें</p>
-            <a href="https://wa.me/9792484696?text=नमस्ते%2C%20मैं%20सुंदरकांड%20पाठ%20के%20बारे%20में%20जानकारी%20चाहता%20हूँ" target="_blank" class="wa-btn">
+            <a href="https://wa.me/+919792484696?text=नमस्ते%2C%20मैं%20सुंदरकांड%20पाठ%20के%20बारे%20में%20जानकारी%20चाहता%20हूँ" target="_blank" class="wa-btn">
                 <i class="fa-brands fa-whatsapp"></i> WhatsApp पर भेजें
             </a>
         </div>
@@ -653,23 +653,60 @@
 <!-- FOOTER STRIP -->
 <div class="footer-strip">
     <span class="jai">जय श्री राम • जय हनुमान</span>
-    <span>© 2002 – 2026 श्री हनुमान मंदिर, गुवारा तैयबपुर, कौशांबी &nbsp;|&nbsp; Feedback: <a href="https://wa.me/+918948103075?text=नमस्ते%2C%20मैंने%20मंदिर%20पोर्टल%20के%20माध्यम%20से%20संपर्क%20किया%20है।" target="_blank" style="color:var(--gold);">Contact Admin</a></span>
+    <span>© 2002 – 2026 श्री हनुमान मंदिर, गुवारा तैयबपुर, कौशांबी &nbsp;|&nbsp; Feedback: <a href="https://wa.me/+918948103075?text=Hi, %2C%20मैंने%20मंदिर%20पोर्टल%20के%20माध्यम%20से%20संपर्क%20किया%20है।" target="_blank" style="color:var(--gold);">Contact Admin</a></span>
 </div>
-
 <script>
     let checked = 0;
     const total = document.querySelectorAll('.saman-item').length;
+    const STORAGE_KEY = 'sundarkand_saman_checklist';
+
+    // Load saved state from sessionStorage on page load
+    function loadCheckedItems() {
+        const saved = sessionStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            const checkedIndices = JSON.parse(saved);
+            const items = document.querySelectorAll('.saman-item');
+            checkedIndices.forEach(index => {
+                if (items[index]) {
+                    items[index].querySelector('.saman-cb').classList.add('checked');
+                    items[index].style.background = '#FFF3E8';
+                    checked++;
+                }
+            });
+            updateCounter();
+        }
+    }
 
     function toggleSaman(el) {
         const cb = el.querySelector('.saman-cb');
         const wasChecked = cb.classList.contains('checked');
         cb.classList.toggle('checked');
         checked += wasChecked ? -1 : 1;
-        document.getElementById('counter').textContent = checked + ' / ' + total + ' सामग्री चेक की गई';
-
+        
         // Visual feedback on the item
         el.style.background = cb.classList.contains('checked') ? '#FFF3E8' : '';
+        
+        // Save to sessionStorage
+        saveCheckedItems();
+        updateCounter();
     }
+
+    function updateCounter() {
+        document.getElementById('counter').textContent = checked + ' / ' + total + ' सामग्री चेक की गई';
+    }
+
+    function saveCheckedItems() {
+        const checkedIndices = [];
+        document.querySelectorAll('.saman-item').forEach((item, index) => {
+            if (item.querySelector('.saman-cb').classList.contains('checked')) {
+                checkedIndices.push(index);
+            }
+        });
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(checkedIndices));
+    }
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', loadCheckedItems);
 </script>
 </body>
 </html>
