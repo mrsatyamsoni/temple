@@ -1115,7 +1115,8 @@
         <div>
           <div class="cc-role">अध्यक्ष</div>
           <div class="cc-name">हरिश्चंद्र मौर्य</div>
-          <div class="cc-phone">7905264209</div>
+          <div class="cc-phone">Anoop: 7905264209</div>
+          <div class="cc-phone">Aman: 9517454179</div>
         </div>
         <div class="cc-actions">
           <button class="cc-btn call" onclick="confirmAction('call','tel:7905264209','📞 कॉल करें?','हरिश्चंद्र मौर्य (अध्यक्ष) — 7905264209')"><i class="fa-solid fa-phone"></i></button>
@@ -1365,6 +1366,30 @@
         <div class="about-card-title"><i class="fa-solid fa-mobile-screen" style="color:var(--saffron);"></i> इस App के बारे में</div>
         <p class="about-desc">यह App श्री हनुमंत मंदिर, कौशांबी के भक्तों की सुविधा के लिए बनाई गई है। इसमें मंदिर की सम्पूर्ण जानकारी, सुंदरकांड पाठ की विधि, गैलरी एवं संपर्क विवरण उपलब्ध है।</p>
         <div class="dev-note" style="margin-top:12px;"><i class="fa-solid fa-lightbulb" style="color:var(--saffron);margin-right:6px;"></i> App में कोई बदलाव, सुझाव या नई जानकारी जोड़नी हो तो नीचे Instagram पर संपर्क करें।</div>
+       
+    <div class="dev-note" style="margin-top:12px;">
+        <i class="fa-solid fa-lightbulb" style="color:var(--saffron);margin-right:6px;"></i>
+        <a href="https://github.com/mrsatyamsoni/temple/raw/refs/heads/main/Hanumant-Mandir.apk" id="apk-link" style="color:var(--saffron);text-decoration:none;font-weight:600;cursor:pointer;">
+            ऐप डाउनलोड करें (App Download/Update Kare)
+        </a>
+    </div>
+
+    <script>
+    document.getElementById('apk-link').addEventListener('click', function(e) {
+        const isApp = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && window.location.href.startsWith('file://');
+        if (isApp) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    window.addEventListener('load', function() {
+        const isApp = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && window.location.href.startsWith('file://');
+        if (isApp) {
+            document.getElementById('apk-link').parentElement.style.display = 'none';
+        }
+    });
+    </script>
       </div>
 
       <!-- Instagram Card -->
