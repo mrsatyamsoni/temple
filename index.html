@@ -1,1006 +1,1711 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="ramji.png" >
-    <meta name="description" content="श्री हनुमान मंदिर, गुवारा तैयबपुर, कौशांबी">
-    <title>श्री हनुमान मंदिर | कौशांबी</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700;900&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <style>
-        :root {
-            --saffron: #FF6B00;
-            --deep-saffron: #E05500;
-            --maroon: #8B0000;
-            --gold: #D4A017;
-            --light-gold: #F5E6C8;
-            --cream: #FDF6EC;
-            --deep: #1A0A00;
-            --text: #2D1500;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#b5390a" />
+  <title>हनुमंत मंदिर</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <!-- ═══ GOOGLE FONTS ═══ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Noto+Sans+Devanagari:wght@400;600;700&family=Poppins:wght@400;600;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Tiro Devanagari Hindi', Georgia, serif;
-            background: var(--cream);
-            color: var(--text);
-            overflow-x: hidden;
-        }
+  <!-- ═══ FONT AWESOME 6 (Solid Icons) ═══ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-        .serif { font-family: 'Noto Serif Devanagari', serif; }
+  <!-- ═══ ANIMATE.CSS ═══ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-        /* PRELOADER */
-        #preloader {
-            position: fixed; inset: 0; z-index: 9999;
-            background: var(--maroon);
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column; gap: 20px;
-            transition: opacity 0.8s ease;
-        }
-        #preloader .om {
-            font-size: 90px;
-            animation: pulse 1.5s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px rgba(212,160,23,0.8));
-        }
-        #preloader p {
-            color: var(--gold);
-            font-size: 28px;
-            font-family: 'Noto Serif Devanagari', serif;
-            letter-spacing: 4px;
-        }
-        @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+  <!-- ═══ GSAP (Animation Engine) ═══ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
 
-        /* MARQUEE */
-        .marquee-bar {
-            background: linear-gradient(90deg, var(--maroon), #5C0000, var(--maroon));
-            color: var(--gold);
-            padding: 10px 0;
-            overflow: hidden;
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-        .marquee-inner {
-            display: flex; gap: 60px; white-space: nowrap;
-            animation: marquee 30s linear infinite;
-        }
-        @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  <!-- ═══ PARTICLES.JS ═══ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
 
-        /* NAVBAR */
-        nav {
-            background: white;
-            border-bottom: 3px solid var(--gold);
-            position: sticky; top: 0; z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        .nav-inner {
-            max-width: 1100px; margin: 0 auto;
-            padding: 14px 28px;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .nav-logo { display: flex; align-items: center; gap: 14px; }
-        .nav-logo .icon-box {
-            width: 52px; height: 52px;
-            background: linear-gradient(135deg, var(--saffron), var(--maroon));
-            border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 28px;
-            box-shadow: 0 4px 12px rgba(255,107,0,0.4);
-        }
-        .nav-logo h1 {
-            font-family: 'Noto Serif Devanagari', serif;
-            font-size: 22px; font-weight: 700;
-            color: var(--maroon);
-            line-height: 1.2;
-        }
-        .nav-logo p { font-size: 11px; color: #888; margin-top: 2px; }
-        nav ul {
-            display: flex; gap: 32px; list-style: none;
-            font-size: 15px; font-weight: 600;
-        }
-        nav ul a { color: var(--text); text-decoration: none; transition: color 0.3s; }
-        nav ul a:hover { color: var(--saffron); }
-        .nav-cta {
-            background: linear-gradient(135deg, var(--saffron), var(--maroon));
-            color: white;
-            padding: 10px 22px;
-            border-radius: 50px;
-            font-size: 14px; font-weight: 600;
-            text-decoration: none;
-            display: flex; align-items: center; gap: 8px;
-            box-shadow: 0 4px 14px rgba(255,107,0,0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,107,0,0.5); }
+  <style>
+    /* ══════════════════════════════════════════════════════
+       CSS VARIABLES — LIGHT / DARK THEMES
+    ══════════════════════════════════════════════════════ */
+    :root, [data-theme="light"] {
+      --saffron: #e8610a;
+      --deep-saffron: #b5390a;
+      --gold: #d4a017;
+      --gold-light: #f5c842;
+      --dark-red: #7a1c00;
+      --maroon: #6b1a1a;
 
-        /* HERO SLIDER */
-        .hero {
-            height: 500px; position: relative; overflow: hidden;
-        }
-        .slide {
-            position: absolute; inset: 0;
-            opacity: 0; transition: opacity 1s ease;
-            background-size: cover; background-position: center;
-        }
-        .slide.active { opacity: 1; }
-        .slide-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(26,10,0,0.85) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
-        }
-        .hero-content {
-            position: absolute; bottom: 60px; left: 0; right: 0;
-            text-align: center; color: white;
-        }
-        .hero-content .tag {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--maroon);
-            padding: 5px 20px;
-            border-radius: 50px;
-            font-size: 12px; font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 14px;
-        }
-        .hero-content h1 {
-            font-family: 'Noto Serif Devanagari', serif;
-            font-size: 56px; font-weight: 900;
-            line-height: 1.1;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-        .hero-content p {
-            margin-top: 10px; font-size: 20px;
-            color: var(--light-gold); letter-spacing: 3px;
-        }
-        .slide-btn {
-            position: absolute; top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.3);
-            color: white; width: 46px; height: 46px;
-            border-radius: 50%;
-            font-size: 22px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.3s;
-        }
-        .slide-btn:hover { background: var(--gold); color: var(--maroon); }
-        .slide-btn.prev { left: 20px; }
-        .slide-btn.next { right: 20px; }
-        .slide-dots {
-            position: absolute; bottom: 20px; left: 50%;
-            transform: translateX(-50%);
-            display: flex; gap: 8px;
-        }
-        .dot {
-            width: 8px; height: 8px; border-radius: 50%;
-            background: rgba(255,255,255,0.4);
-            transition: all 0.3s; cursor: pointer;
-        }
-        .dot.active { background: var(--gold); width: 24px; border-radius: 4px; }
+      --bg: #fff8ee;
+      --bg2: #ffffff;
+      --bg3: #fdf3e0;
+      --surface: #ffffff;
+      --surface2: #fff3dc;
+      --text: #2a1200;
+      --text2: #6b4c2a;
+      --text3: #aaa;
+      --border: rgba(212,160,23,0.2);
+      --shadow: rgba(181,57,10,0.10);
+      --header-bg: linear-gradient(160deg, #b5390a 0%, #e8610a 60%, #d4a017 100%);
+      --card-bg: #ffffff;
+      --nav-bg: #ffffff;
+      --drawer-bg: #fff8ee;
+      --status-bg: #b5390a;
+      --ticker-bg: #d4a017;
+      --ticker-text: #7a1c00;
+      --loader-bg: linear-gradient(135deg, #7a1c00, #b5390a, #e8610a);
+    }
 
-        /* SECTION WRAPPER */
-        .section { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
-        .section-title {
-            text-align: center; margin-bottom: 50px;
-        }
-        .section-title .kicker {
-            display: inline-block;
-            color: var(--saffron);
-            font-size: 13px; font-weight: 700;
-            letter-spacing: 3px; text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-        .section-title h2 {
-            font-family: 'Noto Serif Devanagari', serif;
-            font-size: 38px; font-weight: 800;
-            color: var(--maroon);
-        }
+    [data-theme="dark"] {
+      --bg: #120800;
+      --bg2: #1e0e03;
+      --bg3: #261205;
+      --surface: #1e0e03;
+      --surface2: #2e1a08;
+      --text: #f5e6cc;
+      --text2: #c9a06a;
+      --text3: #7a5a35;
+      --border: rgba(212,160,23,0.15);
+      --shadow: rgba(0,0,0,0.4);
+      --header-bg: linear-gradient(160deg, #6a1500 0%, #a03400 60%, #8a6000 100%);
+      --card-bg: #1e0e03;
+      --nav-bg: #120800;
+      --drawer-bg: #180c02;
+      --status-bg: #6a1500;
+      --ticker-bg: #5a4000;
+      --ticker-text: #f5c842;
+      --loader-bg: linear-gradient(135deg, #1a0800, #4a1500, #8a3000);
+    }
 
-        /* ── CARDS (NEW DESIGN) ── */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-            padding: 70px 0;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* About Card - Layered temple aesthetic */
-        .about-card {
-            background: white;
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: 0 8px 40px rgba(139,0,0,0.12);
-            position: relative;
-            transition: transform 0.4s, box-shadow 0.4s;
-        }
-        .about-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(139,0,0,0.2); }
-        .about-card-top {
-            background: linear-gradient(135deg, var(--maroon) 0%, #5C0000 100%);
-            padding: 32px 32px 24px;
-            position: relative;
-            overflow: hidden;
-        }
-        .about-card-top::before {
-            content: 'ॐ';
-            position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
-            font-size: 100px; color: rgba(255,255,255,0.06);
-            font-family: 'Noto Serif Devanagari', serif;
-        }
-        .about-card-top .badge {
-            background: var(--gold);
-            color: var(--maroon);
-            display: inline-block;
-            padding: 4px 16px; border-radius: 50px;
-            font-size: 12px; font-weight: 700;
-            letter-spacing: 1px; margin-bottom: 14px;
-        }
-        .about-card-top h2 {
-            font-family: 'Noto Serif Devanagari', serif;
-            color: white; font-size: 26px; font-weight: 800;
-            line-height: 1.3;
-        }
-        .about-card-body { padding: 28px 32px 32px; }
-        .info-row {
-            display: flex; align-items: flex-start; gap: 14px;
-            padding: 14px 0;
-            border-bottom: 1px solid #F0E8D8;
-        }
-        .info-row:last-of-type { border-bottom: none; }
-        .info-row .icon {
-            width: 38px; height: 38px; flex-shrink: 0;
-            background: var(--light-gold);
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--saffron); font-size: 16px;
-        }
-        .info-row .text { font-size: 15px; line-height: 1.5; }
-        .info-row .text strong { display: block; font-size: 12px; color: #999; margin-bottom: 2px; letter-spacing: 1px; text-transform: uppercase; }
-        .card-cta {
-            display: block; text-align: center;
-            background: linear-gradient(135deg, var(--saffron), var(--maroon));
-            color: white; padding: 16px;
-            border-radius: 14px; text-decoration: none;
-            font-weight: 700; font-size: 16px;
-            margin-top: 8px;
-            transition: opacity 0.3s, transform 0.3s;
-        }
-        .card-cta:hover { opacity: 0.9; transform: scale(0.99); }
+    html { scroll-behavior: smooth; }
 
-        /* Sundarkand Card - Festive gold */
-        .sund-card {
-            background: linear-gradient(160deg, #FFF8E8 0%, #FEF0CA 100%);
-            border-radius: 28px;
-            border: 2px solid var(--gold);
-            overflow: hidden;
-            box-shadow: 0 8px 40px rgba(212,160,23,0.2);
-            position: relative;
-            transition: transform 0.4s, box-shadow 0.4s;
-        }
-        .sund-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(212,160,23,0.35); }
-        .sund-card-top {
-            padding: 32px 32px 24px;
-            position: relative;
-        }
-        .sund-card-top::after {
-            content: '🪔';
-            position: absolute; right: 28px; top: 28px;
-            font-size: 60px; opacity: 0.5;
-        }
-        .sund-card-top .week-badge {
-            background: var(--saffron);
-            color: white;
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 6px 18px; border-radius: 50px;
-            font-size: 12px; font-weight: 700;
-            letter-spacing: 1px; margin-bottom: 16px;
-        }
-        .sund-card-top h2 {
-            font-family: 'Noto Serif Devanagari', serif;
-            color: var(--maroon); font-size: 26px; font-weight: 800;
-            line-height: 1.3; max-width: 80%;
-        }
-        .sund-card-body { padding: 0 32px 32px; }
-        .benefit-list { list-style: none; margin: 16px 0 24px; }
-        .benefit-list li {
-            padding: 10px 0;
-            border-bottom: 1px dashed rgba(212,160,23,0.4);
-            display: flex; align-items: center; gap: 10px;
-            font-size: 15px; color: var(--text);
-        }
-        .benefit-list li::before {
-            content: '✦';
-            color: var(--saffron); font-size: 12px; flex-shrink: 0;
-        }
-        .sund-cta {
-            display: block; text-align: center;
-            background: linear-gradient(135deg, var(--gold), var(--saffron));
-            color: white; padding: 16px;
-            border-radius: 14px; text-decoration: none;
-            font-weight: 700; font-size: 16px;
-            box-shadow: 0 6px 20px rgba(212,160,23,0.4);
-            transition: opacity 0.3s, transform 0.3s;
-        }
-        .sund-cta:hover { opacity: 0.9; transform: scale(0.99); }
+    body {
+      font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      max-width: 430px;
+      margin: 0 auto;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
+    }
 
-        /* TIMINGS */
-        .timings-section { padding: 20px 0 80px; }
-        .timings-grid {
-            display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
-        }
-        .timing-card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px 24px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-            border-top: 4px solid transparent;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative; overflow: hidden;
-        }
-        .timing-card:nth-child(1) { border-top-color: var(--saffron); }
-        .timing-card:nth-child(2) { border-top-color: var(--maroon); }
-        .timing-card:nth-child(3) { border-top-color: var(--gold); }
-        .timing-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
-        .timing-card .t-icon {
-            width: 64px; height: 64px; border-radius: 18px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 28px; margin: 0 auto 16px;
-        }
-        .timing-card:nth-child(1) .t-icon { background: rgba(255,107,0,0.1); }
-        .timing-card:nth-child(2) .t-icon { background: rgba(139,0,0,0.1); }
-        .timing-card:nth-child(3) .t-icon { background: rgba(212,160,23,0.1); }
-        .timing-card h3 {
-            font-family: 'Noto Serif Devanagari', serif;
-            font-size: 18px; font-weight: 700;
-            color: var(--maroon); margin-bottom: 8px;
-        }
-        .timing-card p { font-size: 14px; color: #666; line-height: 1.7; }
-        .timing-card .time-pill {
-            display: inline-block; margin-top: 12px;
-            background: var(--light-gold);
-            color: var(--maroon);
-            padding: 4px 14px; border-radius: 50px;
-            font-size: 13px; font-weight: 600;
-        }
+    /* ══════════════════════════════════════════════════════
+       PAGE LOADER
+    ══════════════════════════════════════════════════════ */
+    #page-loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--loader-bg);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 20px;
+      transition: opacity 0.6s ease;
+    }
+    #page-loader.hide { opacity: 0; pointer-events: none; }
+    .loader-om {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 72px;
+      color: #f5c842;
+      animation: omPulse 1.8s ease-in-out infinite;
+      text-shadow: 0 0 30px rgba(245,200,66,0.6), 0 0 60px rgba(245,200,66,0.3);
+      line-height: 1;
+    }
+    @keyframes omPulse {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.15); opacity: 1; }
+    }
+    .loader-text {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 18px; color: rgba(255,255,255,0.85);
+      letter-spacing: 2px;
+    }
+    .loader-dots { display: flex; gap: 8px; }
+    .loader-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #f5c842;
+      animation: dotBounce 1.4s ease-in-out infinite;
+    }
+    .loader-dot:nth-child(2) { animation-delay: 0.2s; }
+    .loader-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotBounce {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
 
-        /* LOCATION */
-        .location-section { padding: 0 0 80px; }
-        .location-box {
-            background: white; border-radius: 28px;
-            overflow: hidden;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.1);
-            display: grid; grid-template-columns: 1fr 1fr;
-        }
-        .location-info { padding: 44px 40px; }
-        .location-info h3 {
-            font-family: 'Noto Serif Devanagari', serif;
-            font-size: 26px; font-weight: 800; color: var(--maroon);
-            margin-bottom: 20px;
-        }
-        .addr-row {
-            display: flex; gap: 14px; margin-bottom: 20px;
-        }
-        .addr-row .icon { color: var(--saffron); font-size: 20px; margin-top: 2px; }
-        .addr-row p { font-size: 15px; line-height: 1.7; color: #555; }
-        .map-btn {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: linear-gradient(135deg, var(--saffron), var(--maroon));
-            color: white; padding: 14px 26px; border-radius: 50px;
-            text-decoration: none; font-weight: 700; font-size: 15px;
-            box-shadow: 0 6px 20px rgba(255,107,0,0.35);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .map-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,107,0,0.45); }
-        .location-box iframe { width: 100%; height: 320px; border: none; display: block; }
+    /* ══════════════════════════════════════════════════════
+       STATUS BAR
+    ══════════════════════════════════════════════════════ */
+    .status-bar {
+      background: var(--status-bg);
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      font-size: 11px;
+      color: #fff;
+      font-weight: 600;
+      position: sticky; top: 0; z-index: 200;
+      transition: background 0.4s;
+    }
+    .status-right { display: flex; align-items: center; gap: 8px; }
+    .battery-wrap {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 11px; font-weight: 600;
+    }
+    .battery-icon {
+      position: relative; width: 22px; height: 11px;
+      border: 1.5px solid rgba(255,255,255,0.8);
+      border-radius: 2px;
+    }
+    .battery-icon::after {
+      content: ''; position: absolute;
+      right: -5px; top: 50%; transform: translateY(-50%);
+      width: 3px; height: 6px;
+      background: rgba(255,255,255,0.8); border-radius: 0 1px 1px 0;
+    }
+    .battery-fill {
+      position: absolute; left: 1px; top: 1px; bottom: 1px;
+      border-radius: 1px;
+      transition: width 2s ease;
+    }
+    .battery-fill.high { background: #4cff7a; }
+    .battery-fill.mid { background: #f5c842; }
+    .battery-fill.low { background: #ff4444; }
 
-        /* GALLERY */
-        .gallery-section { padding: 80px 0; }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: 220px 220px;
-            gap: 16px;
-        }
-        .gallery-item { border-radius: 20px; overflow: hidden; position: relative; }
-        .gallery-item:first-child { grid-column: span 2; grid-row: span 2; border-radius: 28px; }
-        .gallery-item img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .gallery-item:hover img { transform: scale(1.07); }
-        .gallery-item::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(139,0,0,0.4), transparent);
-            opacity: 0; transition: opacity 0.4s;
-        }
-        .gallery-item:hover::after { opacity: 1; }
+    /* ══════════════════════════════════════════════════════
+       PAGES — ANIMATED TRANSITIONS
+    ══════════════════════════════════════════════════════ */
+    .page {
+      display: none;
+      animation: pageSlideIn 0.35s cubic-bezier(0.4,0,0.2,1) both;
+    }
+    .page.active { display: block; }
+    @keyframes pageSlideIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .page.slide-left {
+      animation: slideFromRight 0.35s cubic-bezier(0.4,0,0.2,1) both;
+    }
+    @keyframes slideFromRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
 
-        /* ── CONTACT (standalone, separate from form) ── */
-        .contact-section { padding: 80px 0 0; }
-        .contact-info-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-            margin-bottom: 0;
-        }
-        .contact-info-card {
-            background: white; border-radius: 22px;
-            padding: 32px 28px; text-align: center;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-            border-bottom: 4px solid var(--gold);
-            transition: transform 0.3s;
-        }
-        .contact-info-card:hover { transform: translateY(-4px); }
-        .contact-info-card .ci-icon {
-            width: 60px; height: 60px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--saffron), var(--maroon));
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 22px;
-            margin: 0 auto 18px;
-            box-shadow: 0 6px 16px rgba(255,107,0,0.35);
-        }
-        .contact-info-card h4 {
-            font-family: 'Noto Serif Devanagari', serif;
-            font-size: 17px; color: var(--maroon);
-            font-weight: 700; margin-bottom: 8px;
-        }
-        .contact-info-card p { font-size: 14px; color: #666; line-height: 1.6; }
-        .contact-info-card a { color: var(--saffron); text-decoration: none; font-weight: 600; }
+    /* ══════════════════════════════════════════════════════
+       APP HEADER
+    ══════════════════════════════════════════════════════ */
+    .app-header {
+      background: var(--header-bg);
+      padding: 0 0 24px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+    }
+    .app-header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .header-top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px 0;
+      position: relative; z-index: 2;
+    }
+    .header-menu-btn, .header-bell-btn, .header-theme-btn {
+      background: rgba(255,255,255,0.18);
+      border: none; border-radius: 10px;
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: #fff; font-size: 16px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .header-menu-btn:active, .header-bell-btn:active, .header-theme-btn:active { transform: scale(0.88); }
+    .header-menu-btn { flex-direction: column; gap: 5px; }
+    .header-menu-btn span { display: block; width: 20px; height: 2px; background: #fff; border-radius: 2px; transition: 0.3s; }
+    .header-right-btns { display: flex; gap: 8px; }
 
-        /* ── FORM (separate, premium solid UI) ── */
-        .form-section { padding: 60px 0 90px; }
-        .form-wrapper {
-            background: white; border-radius: 32px;
-            box-shadow: 0 16px 60px rgba(0,0,0,0.1);
-            overflow: hidden;
-            display: grid; grid-template-columns: 380px 1fr;
-        }
-        .form-sidebar {
-            background: linear-gradient(160deg, var(--maroon) 0%, #3D0000 100%);
-            padding: 52px 40px;
-            display: flex; flex-direction: column;
-            justify-content: space-between;
-            position: relative; overflow: hidden;
-        }
-        .form-sidebar::before {
-            content: 'ॐ';
-            position: absolute; bottom: -20px; right: -10px;
-            font-size: 200px; color: rgba(255,255,255,0.04);
-            font-family: 'Noto Serif Devanagari', serif;
-        }
-        .form-sidebar h2 {
-            font-family: 'Noto Serif Devanagari', serif;
-            font-size: 32px; color: white; font-weight: 900;
-            line-height: 1.3; margin-bottom: 16px;
-        }
-        .form-sidebar p { color: rgba(255,255,255,0.7); font-size: 15px; line-height: 1.7; }
-        .sidebar-features { margin-top: 40px; list-style: none; }
-        .sidebar-features li {
-            display: flex; align-items: center; gap: 12px;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            color: white; font-size: 15px;
-        }
-        .sidebar-features li .sf-icon {
-            width: 34px; height: 34px; border-radius: 10px;
-            background: rgba(212,160,23,0.2);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--gold); font-size: 14px; flex-shrink: 0;
-        }
-        .sidebar-bottom {
-            margin-top: 40px;
-        }
-        .sidebar-bottom .whatsapp-link {
-            display: flex; align-items: center; gap: 10px;
-            background: #25D366; color: white;
-            padding: 14px 20px; border-radius: 14px;
-            font-weight: 700; text-decoration: none; font-size: 15px;
-            transition: opacity 0.3s;
-        }
-        .sidebar-bottom .whatsapp-link:hover { opacity: 0.9; }
+    /* Bell notification dot */
+    .bell-wrap { position: relative; }
+    .bell-dot {
+      position: absolute; top: 6px; right: 6px;
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #f5c842; border: 1.5px solid rgba(181,57,10,0.5);
+      animation: bellPop 2s ease-in-out infinite;
+    }
+    @keyframes bellPop {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
 
-        .form-main { padding: 52px 48px; }
-        .form-main h3 {
-            font-family: 'Noto Serif Devanagari', serif;
-            font-size: 28px; color: var(--maroon); font-weight: 800;
-            margin-bottom: 6px;
-        }
-        .form-main .sub { font-size: 14px; color: #999; margin-bottom: 36px; }
+    /* Notifications Panel */
+    .notif-panel {
+      display: none;
+      position: fixed; top: 60px; right: 0; left: 50%;
+      transform: translateX(-50%);
+      max-width: 430px; width: 100%;
+      background: var(--surface);
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      z-index: 300;
+      padding: 16px;
+      border-top: 3px solid var(--saffron);
+      animation: slideDown 0.3s ease;
+    }
+    .notif-panel.open { display: block; }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    .notif-header-title {
+      font-size: 14px; font-weight: 700; color: var(--dark-red);
+      margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .notif-item {
+      display: flex; gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .notif-item:last-child { border-bottom: none; }
+    .notif-dot2 {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--saffron); margin-top: 5px; flex-shrink: 0;
+    }
+    .notif-text { font-size: 12.5px; color: var(--text); line-height: 1.5; }
+    .notif-time { font-size: 10px; color: var(--text3); margin-top: 2px; }
 
-        .form-group { margin-bottom: 24px; }
-        .form-group label {
-            display: block; font-size: 13px; font-weight: 700;
-            color: var(--maroon); letter-spacing: 1px;
-            text-transform: uppercase; margin-bottom: 8px;
-        }
-        .form-control {
-            width: 100%;
-            background: #F9F5F0;
-            border: 2px solid #EDE4D4;
-            border-radius: 14px;
-            padding: 16px 20px;
-            font-size: 16px;
-            font-family: 'Tiro Devanagari Hindi', serif;
-            color: var(--text);
-            transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
-            outline: none;
-        }
-        .form-control:focus {
-            border-color: var(--saffron);
-            background: white;
-            box-shadow: 0 0 0 4px rgba(255,107,0,0.12);
-        }
-        .form-control::placeholder { color: #BBA898; }
-        textarea.form-control { resize: vertical; min-height: 130px; }
+    .header-center {
+      text-align: center; padding: 16px 16px 0;
+      position: relative; z-index: 1;
+    }
+    .temple-logo-wrap {
+      width: 88px; height: 88px;
+      margin: 0 auto 10px;
+      background: rgba(255,255,255,0.14);
+      border-radius: 24px;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(255,255,255,0.35);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2), 0 0 0 6px rgba(255,200,50,0.12);
+      font-size: 52px;
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 8px 32px rgba(0,0,0,0.2), 0 0 0 6px rgba(255,200,50,0.12); }
+      50% { box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 12px rgba(255,200,50,0.22); }
+    }
+    .header-title {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 24px; color: #fff; font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3); line-height: 1.2;
+    }
+    .header-subtitle { font-size: 12px; color: rgba(255,255,255,0.82); margin-top: 4px; letter-spacing: 0.8px; }
+    .header-badges { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+    .badge {
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px; padding: 4px 12px;
+      font-size: 11px; color: #fff;
+    }
 
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    /* ══════════════════════════════════════════════════════
+       INNER PAGE HEADER
+    ══════════════════════════════════════════════════════ */
+    .inner-header {
+      background: var(--header-bg);
+      padding: 14px 16px 20px;
+      display: flex; align-items: center; gap: 12px;
+      position: relative; overflow: hidden;
+    }
+    .inner-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .inner-header-icon { font-size: 34px; position: relative; z-index: 1; }
+    .inner-header-text { position: relative; z-index: 1; }
+    .inner-header-title { font-family: 'Tiro Devanagari Hindi', serif; font-size: 20px; color: #fff; font-weight: 700; text-shadow: 0 2px 6px rgba(0,0,0,0.25); }
+    .inner-header-sub { font-size: 12px; color: rgba(255,255,255,0.8); margin-top: 2px; }
 
-        .form-select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23FF6B00' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 18px center;
-        }
+    /* ══════════════════════════════════════════════════════
+       TICKER
+    ══════════════════════════════════════════════════════ */
+    .ticker-wrap {
+      background: var(--ticker-bg);
+      padding: 7px 0; overflow: hidden; white-space: nowrap;
+      transition: background 0.4s;
+    }
+    .ticker-inner { display: inline-block; animation: scroll-left 24s linear infinite; }
+    .ticker-inner span { font-size: 12.5px; color: var(--ticker-text); font-weight: 600; padding: 0 20px; }
+    @keyframes scroll-left {
+      0% { transform: translateX(100vw); }
+      100% { transform: translateX(-100%); }
+    }
 
-        .submit-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--saffron) 0%, var(--maroon) 100%);
-            color: white; border: none;
-            padding: 18px 32px; border-radius: 14px;
-            font-size: 18px; font-weight: 700;
-            font-family: 'Noto Serif Devanagari', serif;
-            cursor: pointer; letter-spacing: 1px;
-            box-shadow: 0 8px 28px rgba(255,107,0,0.35);
-            transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            margin-top: 8px;
-        }
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 36px rgba(255,107,0,0.45);
-        }
-        .submit-btn:active { transform: scale(0.99); }
+    /* ══════════════════════════════════════════════════════
+       MAIN CONTENT
+    ══════════════════════════════════════════════════════ */
+    .main-content { padding: 16px 14px 90px; }
 
-        /* ── FOOTER (completely new design) ── */
-        footer {
-            background: var(--deep);
-            color: white;
-            position: relative; overflow: hidden;
-        }
-        footer::before {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--maroon), var(--saffron), var(--gold), var(--saffron), var(--maroon));
-        }
-        .footer-top {
-            max-width: 1100px; margin: 0 auto;
-            padding: 70px 28px 50px;
-            display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 50px;
-        }
-        .footer-brand {}
-        .footer-brand .brand-icon {
-            width: 60px; height: 60px;
-            background: linear-gradient(135deg, var(--saffron), var(--maroon));
-            border-radius: 18px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 30px; margin-bottom: 20px;
-        }
-        .footer-brand h3 {
-            font-family: 'Noto Serif Devanagari', serif;
-            font-size: 24px; font-weight: 800;
-            color: var(--light-gold); margin-bottom: 6px;
-        }
-        .footer-brand .est {
-            display: inline-block;
-            background: rgba(212,160,23,0.15);
-            border: 1px solid rgba(212,160,23,0.3);
-            color: var(--gold);
-            padding: 3px 12px; border-radius: 50px;
-            font-size: 12px; letter-spacing: 1px;
-            margin-bottom: 16px;
-        }
-        .footer-brand p { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.7; }
+    /* ══════════════════════════════════════════════════════
+       QUICK ACTIONS
+    ══════════════════════════════════════════════════════ */
+    .quick-actions {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 10px; margin-bottom: 20px;
+    }
+    .qa-item {
+      background: var(--card-bg);
+      border-radius: 16px; padding: 14px 6px 10px;
+      text-align: center;
+      box-shadow: 0 2px 12px var(--shadow);
+      border: 1px solid var(--border);
+      cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .qa-item:active { transform: scale(0.9); }
+    .qa-icon { font-size: 22px; display: block; margin-bottom: 6px; color: var(--saffron); }
+    .qa-label { font-size: 10.5px; color: var(--deep-saffron); font-weight: 600; line-height: 1.3; }
 
-        .footer-col h4 {
-            font-family: 'Noto Serif Devanagari', serif;
-            font-size: 16px; font-weight: 700;
-            color: var(--gold); margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(212,160,23,0.2);
-        }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 12px; }
-        .footer-col ul li a {
-            color: rgba(255,255,255,0.6); text-decoration: none;
-            font-size: 14px; transition: color 0.3s;
-            display: flex; align-items: center; gap: 8px;
-        }
-        .footer-col ul li a:hover { color: var(--gold); }
-        .footer-col ul li a::before { content: '›'; color: var(--saffron); }
+    /* ══════════════════════════════════════════════════════
+       SECTION HEADER
+    ══════════════════════════════════════════════════════ */
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px; margin-top: 4px;
+    }
+    .section-title {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 17px; color: var(--dark-red); font-weight: 700;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .section-title::before {
+      content: ''; display: inline-block;
+      width: 4px; height: 18px; background: var(--saffron); border-radius: 2px;
+    }
+    .see-all { font-size: 12px; color: var(--saffron); font-weight: 600; cursor: pointer; }
 
-        .footer-contact-col {}
-        .footer-contact-item {
-            display: flex; gap: 12px; margin-bottom: 18px;
-        }
-        .footer-contact-item .fc-icon {
-            width: 36px; height: 36px; border-radius: 10px;
-            background: rgba(255,107,0,0.15);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--saffron); font-size: 14px; flex-shrink: 0;
-        }
-        .footer-contact-item .fc-text { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-        .footer-contact-item .fc-text strong { display: block; color: rgba(255,255,255,0.85); margin-bottom: 2px; }
+    /* ══════════════════════════════════════════════════════
+       TIMING CARDS — ANIMATED AARTI
+    ══════════════════════════════════════════════════════ */
+    .timing-cards {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px; margin-bottom: 22px;
+    }
+    .timing-card {
+      background: var(--card-bg); border-radius: 18px;
+      padding: 16px 14px;
+      box-shadow: 0 3px 14px var(--shadow);
+      border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      transition: background 0.4s;
+    }
+    .timing-card::after {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--saffron), var(--gold));
+    }
+    .timing-card.full-width { grid-column: 1 / -1; }
+    .tc-icon {
+      font-size: 28px; margin-bottom: 6px; display: block;
+      transition: transform 0.5s;
+    }
+    /* Sunrise card */
+    .timing-card.aarti-morning { background: var(--card-bg); }
+    .timing-card.aarti-morning.is-aarti-time {
+      background: linear-gradient(135deg, #fff3c0, #ffe08a);
+      animation: aartiBeat 1.5s ease-in-out infinite;
+    }
+    .timing-card.aarti-evening.is-aarti-time {
+      background: linear-gradient(135deg, #ffd4b0, #ffb07c);
+      animation: aartiBeat 1.5s ease-in-out infinite;
+    }
+    @keyframes aartiBeat {
+      0%, 100% { box-shadow: 0 3px 14px rgba(255,180,0,0.2); }
+      50% { box-shadow: 0 6px 28px rgba(255,150,0,0.5); }
+    }
+    .sunrise-icon { animation: sunRise 4s ease-in-out infinite; }
+    .sunset-icon { animation: sunSet 4s ease-in-out infinite; }
+    @keyframes sunRise {
+      0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 4px rgba(255,200,0,0.4)); }
+      50% { transform: translateY(-6px) scale(1.15); filter: drop-shadow(0 0 10px rgba(255,200,0,0.8)); }
+    }
+    @keyframes sunSet {
+      0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 4px rgba(255,120,0,0.4)); }
+      50% { transform: translateY(4px) scale(1.1); filter: drop-shadow(0 0 12px rgba(255,100,0,0.8)); }
+    }
+    .tc-label { font-size: 11px; color: var(--text3); margin-bottom: 2px; }
+    .tc-name { font-family: 'Tiro Devanagari Hindi', serif; font-size: 15px; color: var(--dark-red); font-weight: 700; margin-bottom: 4px; }
+    .tc-time { font-size: 16px; font-weight: 700; color: var(--saffron); }
+    .aarti-live-badge {
+      display: none; position: absolute; top: 12px; right: 12px;
+      background: var(--saffron); color: #fff;
+      font-size: 9px; font-weight: 700;
+      border-radius: 10px; padding: 2px 7px;
+      animation: blinkBadge 1s linear infinite;
+    }
+    @keyframes blinkBadge {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+    }
+    .is-aarti-time .aarti-live-badge { display: inline-block; }
 
-        .footer-socials { margin-top: 20px; display: flex; gap: 10px; }
-        .social-btn {
-            width: 40px; height: 40px; border-radius: 12px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.12);
-            display: flex; align-items: center; justify-content: center;
-            color: rgba(255,255,255,0.6); font-size: 16px;
-            text-decoration: none; transition: all 0.3s;
-        }
-        .social-btn:hover { background: var(--saffron); color: white; border-color: var(--saffron); transform: translateY(-3px); }
+    /* ══════════════════════════════════════════════════════
+       FEATURED
+    ══════════════════════════════════════════════════════ */
+    .featured-card {
+      background: linear-gradient(135deg, var(--dark-red) 0%, var(--maroon) 50%, #3a0a00 100%);
+      border-radius: 22px; padding: 20px 18px;
+      margin-bottom: 20px; position: relative; overflow: hidden;
+      box-shadow: 0 8px 28px rgba(107,26,26,0.35);
+    }
+    .featured-card::before {
+      content: 'ॐ'; position: absolute;
+      right: -10px; top: -14px;
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 100px; opacity: 0.07; color: #fff;
+    }
+    .fc-badge { background: var(--gold-light); color: var(--dark-red); font-size: 11px; font-weight: 700; border-radius: 20px; padding: 3px 10px; display: inline-block; margin-bottom: 10px; }
+    .fc-title { font-family: 'Tiro Devanagari Hindi', serif; font-size: 20px; color: #fff; font-weight: 700; margin-bottom: 6px; }
+    .fc-desc { font-size: 12px; color: rgba(255,255,255,0.72); line-height: 1.6; margin-bottom: 14px; }
+    .fc-btn { background: var(--gold-light); color: var(--dark-red); border: none; border-radius: 14px; padding: 10px 20px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Noto Sans Devanagari', sans-serif; transition: transform 0.15s; }
+    .fc-btn:active { transform: scale(0.95); }
 
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-        .footer-bottom-inner {
-            max-width: 1100px; margin: 0 auto;
-            padding: 24px 28px;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.35); }
-        .footer-bottom .jai {
-            color: var(--gold); font-family: 'Noto Serif Devanagari', serif;
-            font-size: 15px; letter-spacing: 2px;
-        }
-        .dev-credit {
-            font-size: 12px; color: rgba(255,255,255,0.3);
-        }
-        .dev-credit a { color: var(--saffron); text-decoration: none; }
+    /* ══════════════════════════════════════════════════════
+       INFO CARD
+    ══════════════════════════════════════════════════════ */
+    .info-card {
+      background: var(--card-bg); border-radius: 20px;
+      padding: 18px 16px; margin-bottom: 20px;
+      box-shadow: 0 3px 14px var(--shadow);
+      border: 1px solid var(--border); transition: background 0.4s;
+    }
+    .info-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-icon-wrap {
+      width: 38px; height: 38px;
+      background: rgba(232,97,10,0.1); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0; color: var(--saffron);
+    }
+    .info-label { font-size: 11px; color: var(--text3); margin-bottom: 2px; }
+    .info-value { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.4; }
 
-        /* Decorative divider */
-        .divider {
-            text-align: center; padding: 10px 0;
-            color: var(--gold); font-size: 24px; letter-spacing: 16px;
-            opacity: 0.4;
-        }
+    /* ══════════════════════════════════════════════════════
+       GALLERY STRIP (home)
+    ══════════════════════════════════════════════════════ */
+    .gallery-strip {
+      display: flex; gap: 10px;
+      overflow-x: auto; padding-bottom: 6px;
+      margin-bottom: 22px; scrollbar-width: none;
+    }
+    .gallery-strip::-webkit-scrollbar { display: none; }
+    .gallery-thumb {
+      flex-shrink: 0; width: 110px; height: 110px;
+      border-radius: 16px; overflow: hidden;
+      border: 2px solid rgba(212,160,23,0.25);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12); cursor: pointer;
+    }
+    .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .gallery-thumb:active img { transform: scale(1.05); }
 
-        @media(max-width: 768px) {
-            .cards-grid, .timings-grid, .location-box,
-            .contact-info-grid, .form-wrapper, .footer-top,
-            .form-row { grid-template-columns: 1fr; }
-            .hero-content h1 { font-size: 36px; }
-            nav ul { display: none; }
-            .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-            .gallery-item:first-child { grid-column: 1; grid-row: 1; }
-        }
-    </style>
+    /* ══════════════════════════════════════════════════════
+       GALLERY PAGE
+    ══════════════════════════════════════════════════════ */
+    .gallery-page-content { padding: 16px 14px 90px; }
+    .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .gallery-grid-item {
+      border-radius: 18px; overflow: hidden;
+      border: 2px solid rgba(212,160,23,0.22);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+      cursor: pointer; position: relative;
+      background: rgba(212,160,23,0.08); transition: transform 0.2s;
+    }
+    .gallery-grid-item.tall { grid-row: span 2; }
+    .gallery-grid-item img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 150px; }
+    .gallery-grid-item:active { transform: scale(0.97); }
+    .gallery-grid-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.65));
+      padding: 22px 10px 10px;
+      font-size: 11px; color: #fff; font-weight: 600;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       LIGHTBOX
+    ══════════════════════════════════════════════════════ */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,0.94);
+      align-items: center; justify-content: center; flex-direction: column;
+    }
+    .lightbox.open { display: flex; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .lightbox img { max-width: 95vw; max-height: 78vh; object-fit: contain; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+    .lightbox-close {
+      position: absolute; top: 16px; right: 16px;
+      background: rgba(255,255,255,0.15); border: none;
+      border-radius: 50%; width: 40px; height: 40px;
+      font-size: 16px; color: #fff; cursor: pointer;
+    }
+    .lightbox-caption { margin-top: 14px; color: rgba(255,255,255,0.8); font-size: 14px; }
+
+    /* ══════════════════════════════════════════════════════
+       CONTACTS
+    ══════════════════════════════════════════════════════ */
+    .contact-cards { margin-bottom: 22px; }
+    .contact-card {
+      background: var(--card-bg); border-radius: 18px;
+      padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 10px var(--shadow);
+      border: 1px solid var(--border); transition: background 0.4s;
+    }
+    .cc-avatar {
+      width: 46px; height: 46px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--saffron), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0; color: #fff;
+    }
+    .cc-role { font-size: 11px; color: var(--text3); margin-bottom: 2px; }
+    .cc-name { font-size: 14px; font-weight: 700; color: var(--text); }
+    .cc-phone { font-size: 13px; color: var(--saffron); font-weight: 600; }
+    .cc-actions { margin-left: auto; display: flex; gap: 8px; }
+    .cc-btn {
+      width: 36px; height: 36px; border-radius: 10px;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; color: #fff; transition: transform 0.15s;
+    }
+    .cc-btn:active { transform: scale(0.88); }
+    .cc-btn.call { background: #25D366; }
+    .cc-btn.whatsapp { background: #25D366; }
+
+    /* ══════════════════════════════════════════════════════
+       LOCATION
+    ══════════════════════════════════════════════════════ */
+    .location-card {
+      background: var(--surface2); border-radius: 20px;
+      padding: 18px 16px; margin-bottom: 20px;
+      border: 1px solid rgba(212,160,23,0.25);
+      box-shadow: 0 3px 14px var(--shadow); transition: background 0.4s;
+    }
+    .map-placeholder {
+      background: linear-gradient(135deg, rgba(232,97,10,0.08), rgba(212,160,23,0.12));
+      border-radius: 14px; height: 90px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; margin-bottom: 12px;
+      border: 1px dashed rgba(212,160,23,0.3);
+      color: var(--saffron);
+    }
+    .location-text { font-size: 13px; color: var(--text); line-height: 1.7; margin-bottom: 12px; }
+    .map-btn {
+      background: var(--saffron); color: #fff;
+      border: none; border-radius: 14px; padding: 11px 20px;
+      font-size: 13px; font-weight: 700; width: 100%; cursor: pointer;
+      font-family: 'Noto Sans Devanagari', sans-serif; transition: opacity 0.2s;
+    }
+    .map-btn:active { opacity: 0.85; }
+
+    /* ══════════════════════════════════════════════════════
+       BOTTOM NAV
+    ══════════════════════════════════════════════════════ */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 100%; max-width: 430px;
+      background: var(--nav-bg);
+      border-top: 1px solid var(--border);
+      display: flex; padding: 10px 0 16px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+      z-index: 100; transition: background 0.4s;
+    }
+    .nav-item {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; gap: 3px; cursor: pointer; padding: 4px 0;
+      transition: transform 0.15s;
+    }
+    .nav-item:active { transform: scale(0.88); }
+    .nav-icon { font-size: 20px; line-height: 1; color: var(--text3); transition: color 0.2s; }
+    .nav-label { font-size: 10px; color: var(--text3); font-weight: 500; transition: color 0.2s; }
+    .nav-item.active .nav-icon, .nav-item.active .nav-label { color: var(--saffron); font-weight: 700; }
+    .nav-dot { width: 5px; height: 5px; background: var(--saffron); border-radius: 50%; margin-top: 2px; animation: dotPop 0.3s ease; }
+    @keyframes dotPop { from { transform: scale(0); } to { transform: scale(1); } }
+
+    /* ══════════════════════════════════════════════════════
+       DRAWER
+    ══════════════════════════════════════════════════════ */
+    .drawer-overlay {
+      display: none; position: fixed; inset: 0; z-index: 300;
+      background: rgba(0,0,0,0.5); backdrop-filter: blur(2px);
+    }
+    .drawer-overlay.open { display: block; animation: fadeIn 0.25s ease; }
+    .drawer {
+      position: fixed; top: 0; left: 50%;
+      transform: translateX(-215px) translateX(-430px);
+      width: 260px; max-width: 80vw; height: 100vh; z-index: 400;
+      background: var(--drawer-bg);
+      box-shadow: 6px 0 40px rgba(0,0,0,0.25);
+      transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+      overflow-y: auto;
+    }
+    .drawer.open { transform: translateX(-215px); }
+    @media (max-width: 430px) {
+      .drawer { left: 0; transform: translateX(-100%); }
+      .drawer.open { transform: translateX(0); }
+    }
+    .drawer-header {
+      background: var(--header-bg);
+      padding: 44px 20px 22px;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .drawer-logo { font-size: 48px; margin-bottom: 10px; }
+    .drawer-title { font-family: 'Tiro Devanagari Hindi', serif; font-size: 18px; color: #fff; font-weight: 700; }
+    .drawer-subtitle { font-size: 11px; color: rgba(255,255,255,0.75); margin-top: 4px; }
+    .drawer-nav { padding: 8px 0; }
+    .drawer-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 13px 20px; cursor: pointer;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .drawer-item:hover { background: rgba(232,97,10,0.06); }
+    .drawer-item:active { background: rgba(232,97,10,0.14); }
+    .drawer-item-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: rgba(232,97,10,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0; color: var(--saffron);
+    }
+    .drawer-item-label { font-size: 14px; font-weight: 700; color: var(--text); }
+    .drawer-item-sublabel { font-size: 11px; color: var(--text3); margin-top: 1px; }
+    .drawer-divider { height: 1px; background: var(--border); margin: 4px 20px; }
+    .drawer-footer { padding: 18px 20px; font-size: 11px; color: var(--text3); text-align: center; border-top: 1px solid var(--border); }
+
+    /* ══════════════════════════════════════════════════════
+       CONFIRM DIALOG
+    ══════════════════════════════════════════════════════ */
+    .confirm-overlay {
+      display: none; position: fixed; inset: 0; z-index: 800;
+      background: rgba(0,0,0,0.6); align-items: center; justify-content: center;
+    }
+    .confirm-overlay.open { display: flex; }
+    .confirm-box {
+      background: var(--card-bg); border-radius: 22px;
+      padding: 24px 20px; max-width: 320px; width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      animation: scaleIn 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    @keyframes scaleIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .confirm-icon { font-size: 40px; text-align: center; margin-bottom: 12px; display: block; }
+    .confirm-title { font-size: 16px; font-weight: 700; color: var(--text); text-align: center; margin-bottom: 6px; }
+    .confirm-msg { font-size: 13px; color: var(--text2); text-align: center; line-height: 1.6; margin-bottom: 20px; }
+    .confirm-btns { display: flex; gap: 10px; }
+    .confirm-btn {
+      flex: 1; padding: 12px; border: none; border-radius: 14px;
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      font-family: 'Noto Sans Devanagari', sans-serif;
+    }
+    .confirm-btn.ok { background: var(--saffron); color: #fff; }
+    .confirm-btn.cancel { background: var(--border); color: var(--text); }
+
+    /* ══════════════════════════════════════════════════════
+       SUNDARKAND PAGE
+    ══════════════════════════════════════════════════════ */
+    .sk-page { padding: 0 0 90px; }
+    .sk-hero {
+      background: linear-gradient(135deg, #3a0a00 0%, var(--maroon) 50%, var(--dark-red) 100%);
+      padding: 32px 20px 28px; text-align: center;
+      position: relative; overflow: hidden; min-height: 260px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    /* Hanuman ji background image */
+    .sk-hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://mrsatyamsoni.github.io/temple/hanumanji.png') center/cover no-repeat;
+      opacity: 0.28;
+      filter: sepia(40%) saturate(0.7);
+    }
+    .sk-hero-content { position: relative; z-index: 2; }
+    .sk-om {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 44px; display: block; margin-bottom: 8px;
+      color: var(--gold-light);
+      text-shadow: 0 0 20px rgba(245,200,66,0.5);
+      animation: omGlow 2s ease-in-out infinite;
+    }
+    @keyframes omGlow {
+      0%, 100% { text-shadow: 0 0 15px rgba(245,200,66,0.4); }
+      50% { text-shadow: 0 0 30px rgba(245,200,66,0.9), 0 0 60px rgba(245,200,66,0.4); }
+    }
+    .sk-hero-title { font-family: 'Tiro Devanagari Hindi', serif; font-size: 26px; color: #fff; font-weight: 700; }
+    .sk-hero-sub { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 6px; line-height: 1.6; }
+    .sk-shlok {
+      background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px; padding: 14px 18px; margin-top: 16px;
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 13px; color: rgba(255,255,255,0.88); line-height: 2;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Jyoti flame at bottom of hero */
+    .jyoti-wrap {
+      position: relative; z-index: 2;
+      display: flex; justify-content: center;
+      margin-top: 18px; gap: 12px;
+    }
+    .jyoti {
+      width: 20px; position: relative; display: flex; flex-direction: column; align-items: center;
+    }
+    .jyoti-flame {
+      width: 14px; height: 26px;
+      background: radial-gradient(ellipse at 50% 100%, #ff8c00 0%, #ffd700 40%, #ff4500 80%, transparent 100%);
+      border-radius: 50% 50% 30% 30%;
+      animation: flameWave 1.2s ease-in-out infinite;
+      box-shadow: 0 0 12px rgba(255,150,0,0.7), 0 0 24px rgba(255,100,0,0.4);
+    }
+    .jyoti:nth-child(2) .jyoti-flame { animation-delay: 0.2s; width: 18px; height: 32px; }
+    .jyoti:nth-child(3) .jyoti-flame { animation-delay: 0.4s; }
+    @keyframes flameWave {
+      0%   { transform: scaleX(1) scaleY(1) rotate(-2deg); }
+      25%  { transform: scaleX(0.9) scaleY(1.1) rotate(2deg); }
+      50%  { transform: scaleX(1.1) scaleY(0.95) rotate(-1deg); }
+      75%  { transform: scaleX(0.95) scaleY(1.08) rotate(3deg); }
+      100% { transform: scaleX(1) scaleY(1) rotate(-2deg); }
+    }
+    .jyoti-stick {
+      width: 3px; height: 14px;
+      background: linear-gradient(#8B4513, #5C2D0A);
+      border-radius: 1px; margin-top: 2px;
+    }
+    .jyoti-base {
+      width: 22px; height: 5px;
+      background: radial-gradient(ellipse, #d4a017, #a07000);
+      border-radius: 50%;
+    }
+
+    .sk-section { padding: 16px 14px 0; }
+    .sk-card {
+      background: var(--card-bg); border-radius: 20px;
+      padding: 18px 16px; margin-bottom: 16px;
+      box-shadow: 0 3px 14px var(--shadow);
+      border: 1px solid var(--border); transition: background 0.4s;
+    }
+    .sk-card-title {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 16px; color: var(--dark-red); font-weight: 700;
+      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+    }
+    .sk-benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .sk-benefit-item {
+      background: rgba(232,97,10,0.07); border-radius: 12px;
+      padding: 10px 12px; font-size: 12px; color: var(--text); font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sk-steps {}
+    .sk-step {
+      display: flex; gap: 14px; padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .sk-step:last-child { border-bottom: none; }
+    .sk-step-num {
+      width: 32px; height: 32px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--saffron), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .sk-step-label { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .sk-step-desc { font-size: 12px; color: var(--text3); line-height: 1.5; }
+
+    /* ── Checklist with session save */
+    .sk-check-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      cursor: pointer; transition: background 0.15s;
+    }
+    .sk-check-item:last-child { border-bottom: none; }
+    .sk-check-item:active { background: rgba(232,97,10,0.05); border-radius: 10px; }
+    .sk-checkbox {
+      width: 22px; height: 22px; border-radius: 7px;
+      border: 2px solid var(--gold); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; background: transparent;
+    }
+    .sk-check-item.checked .sk-checkbox {
+      background: var(--saffron); border-color: var(--saffron);
+    }
+    .sk-check-item.checked .sk-checkbox::after {
+      content: ''; display: block;
+      width: 6px; height: 10px;
+      border: 2px solid #fff; border-top: none; border-left: none;
+      transform: rotate(45deg) translateY(-1px);
+    }
+    .sk-check-label { font-size: 13px; color: var(--text); flex: 1; }
+    .sk-check-qty { font-size: 11px; color: var(--text3); }
+    .sk-check-item.checked .sk-check-label { text-decoration: line-through; color: var(--text3); }
+    .sk-check-count {
+      background: rgba(232,97,10,0.1); border-radius: 12px; padding: 6px 14px;
+      font-size: 13px; font-weight: 700; color: var(--saffron);
+      margin-bottom: 12px; text-align: center;
+    }
+
+    .sk-timing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .sk-timing-item { background: rgba(232,97,10,0.07); border-radius: 14px; padding: 12px; text-align: center; }
+    .sk-timing-label { font-size: 11px; color: var(--text3); margin-bottom: 4px; }
+    .sk-timing-val { font-size: 15px; font-weight: 700; color: var(--saffron); }
+    .sk-rule-item { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text); line-height: 1.5; }
+    .sk-rule-item:last-child { border-bottom: none; }
+    .sk-wa-btn {
+      display: block; width: 100%; background: #25D366; color: #fff;
+      border: none; border-radius: 16px; padding: 14px 20px;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      margin-top: 6px; transition: opacity 0.2s;
+    }
+    .sk-wa-btn:active { opacity: 0.85; }
+
+    /* ══════════════════════════════════════════════════════
+       ABOUT PAGE
+    ══════════════════════════════════════════════════════ */
+    .about-page { padding: 0 0 90px; }
+    .about-hero {
+      background: linear-gradient(135deg, var(--dark-red), #3a0a00);
+      padding: 32px 20px 28px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .about-hero::before {
+      content: '🛕'; position: absolute; right: -15px; bottom: -20px;
+      font-size: 120px; opacity: 0.07;
+    }
+    .about-hero-icon { font-size: 50px; margin-bottom: 10px; display: block; }
+    .about-hero-title { font-family: 'Tiro Devanagari Hindi', serif; font-size: 22px; color: #fff; font-weight: 700; }
+    .about-hero-sub { font-size: 12px; color: rgba(255,255,255,0.72); margin-top: 6px; line-height: 1.6; }
+    .about-section { padding: 16px 14px 0; }
+    .about-card {
+      background: var(--card-bg); border-radius: 20px;
+      padding: 18px 16px; margin-bottom: 16px;
+      box-shadow: 0 3px 14px var(--shadow);
+      border: 1px solid var(--border); transition: background 0.4s;
+    }
+    .about-card-title {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 16px; color: var(--dark-red); font-weight: 700;
+      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+    }
+    .about-desc { font-size: 13px; color: var(--text2); line-height: 1.8; }
+    .about-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+    .about-stat { background: rgba(232,97,10,0.07); border-radius: 14px; padding: 14px 12px; text-align: center; }
+    .about-stat-val { font-size: 20px; font-weight: 700; color: var(--saffron); font-family: 'Tiro Devanagari Hindi', serif; }
+    .about-stat-label { font-size: 11px; color: var(--text3); margin-top: 3px; }
+    .about-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 11px 0; border-bottom: 1px solid var(--border);
+    }
+    .about-row:last-child { border-bottom: none; }
+    .about-row-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: rgba(232,97,10,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0; color: var(--saffron);
+    }
+    .about-row-label { font-size: 11px; color: var(--text3); margin-bottom: 2px; }
+    .about-row-val { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; }
+    .insta-card {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      border-radius: 20px; padding: 22px 20px; text-align: center;
+      margin-bottom: 16px; cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .insta-card:active { transform: scale(0.97); }
+    .insta-icon { font-size: 42px; margin-bottom: 8px; display: block; }
+    .insta-handle { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .insta-desc { font-size: 12px; color: rgba(255,255,255,0.85); line-height: 1.5; }
+    .insta-btn {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
+      background: rgba(255,255,255,0.22); border: 1.5px solid rgba(255,255,255,0.5);
+      border-radius: 30px; padding: 8px 22px;
+      font-size: 13px; font-weight: 700; color: #fff; cursor: pointer;
+    }
+    .dev-note {
+      background: rgba(232,97,10,0.07); border-radius: 16px; padding: 14px 16px;
+      font-size: 12px; color: var(--text2); line-height: 1.7; text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       FADE UP ANIMATION
+    ══════════════════════════════════════════════════════ */
+    .fade-up { animation: fadeUp 0.5s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.12s; }
+    .d3 { animation-delay: 0.19s; }
+    .d4 { animation-delay: 0.26s; }
+    .d5 { animation-delay: 0.33s; }
+  </style>
 </head>
 <body>
 
-<!-- PRELOADER -->
-<div id="preloader">
-    <div class="om">🕉️</div>
-    <p>जय श्री हनुमान</p>
+<!-- ═══════════════════════════════════ PAGE LOADER -->
+<div id="page-loader">
+  <div class="loader-om">ॐ</div>
+  <div class="loader-text">जय श्री राम</div>
+  <div class="loader-dots">
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+    <div class="loader-dot"></div>
+  </div>
 </div>
 
-<!-- MARQUEE -->
-<div class="marquee-bar">
-    <div class="marquee-inner">
-        <span>🪔 जय श्री राम &nbsp;•&nbsp; जय हनुमान &nbsp;•&nbsp; हर मंगलवार सुंदरकांड पाठ &nbsp;•&nbsp; स्थापना 12 सितंबर 2002 &nbsp;•&nbsp; दर्शन: प्रातः 5 बजे से रात्रि 9 बजे &nbsp;•&nbsp; 🪔</span>
-        <span>🪔 जय श्री राम &nbsp;•&nbsp; जय हनुमान &nbsp;•&nbsp; हर मंगलवार सुंदरकांड पाठ &nbsp;•&nbsp; स्थापना 12 सितंबर 2002 &nbsp;•&nbsp; दर्शन: प्रातः 5 बजे से रात्रि 9 बजे &nbsp;•&nbsp; 🪔</span>
+<!-- ═══════════════════════════════════ STATUS BAR -->
+<div class="status-bar">
+  <span id="clock">00:00:00</span>
+  <span>🛕 हनुमंत मंदिर</span>
+  <div class="status-right">
+    <div class="battery-wrap">
+      <div class="battery-icon">
+        <div class="battery-fill high" id="battery-fill" style="width:80%"></div>
+      </div>
+      <span id="battery-pct">80%</span>
     </div>
+  </div>
 </div>
 
-<!-- NAVBAR -->
-<nav>
-    <div class="nav-inner">
-        <div class="nav-logo">
-            <div class="icon-box">🛕</div>
-            <div>
-                <h1>हनुमान मंदिर</h1>
-                <p>गुवारा तैयबपुर • कौशांबी</p>
-            </div>
+<!-- ═══════════════════════════════════════════ HOME PAGE -->
+<div class="page active" id="page-home">
+  <div class="app-header">
+    <div class="header-top-bar">
+      <button class="header-menu-btn" onclick="openDrawer()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div></div>
+      <div class="header-right-btns">
+        <button class="header-theme-btn" onclick="toggleTheme()" title="Theme">
+          <i class="fa-solid fa-circle-half-stroke" id="theme-icon"></i>
+        </button>
+        <div class="bell-wrap">
+          <button class="header-bell-btn" onclick="toggleNotif()" aria-label="Notifications">
+            <i class="fa-solid fa-bell"></i>
+          </button>
+          <div class="bell-dot"></div>
         </div>
-        <ul>
-            <li><a href="#home">होम</a></li>
-            <li><a href="#about">मंदिर</a></li>
-            <li><a href="sundarkand.html">सुंदरकांड</a></li>
-            <li><a href="#gallery">गैलरी</a></li>
-            <li><a href="#contact">संपर्क</a></li>
-        </ul>
-        <a href="#contact" class="nav-cta">
-            <i class="fa-solid fa-phone"></i> संपर्क करें
-        </a>
+      </div>
     </div>
-</nav>
-
-<!-- HERO SLIDER -->
-<section id="home" class="hero">
-    <div class="slide active" style="background: linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)), url('temple.png') center/cover no-repeat;"></div>
-    <div class="slide" style="background: linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)), url('hanumanji.png') center/cover no-repeat;"></div>
-    <div class="slide" style="background: linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)), url('sundarkand.png') center/cover no-repeat;"></div>
-    <div class="slide" style="background: linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)), url('ramji.png') center/cover no-repeat;"></div>
-    <div class="slide" style="background: linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)), url('durgamata.png') center/cover no-repeat;"></div>
-    <div class="slide" style="background: linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)), url('paath.jpg') center/cover no-repeat;"></div>
-    <div class="slide-overlay"></div>
-    <div class="hero-content">
-        <div class="tag">गुवारा तैयबपुर • मंझनपुर • कौशांबी</div>
-        <h1 class="serif">श्री हनुमान मंदिर</h1>
-        <p>जय श्री राम &nbsp;•&nbsp; जय हनुमान</p>
+    <div class="header-center fade-up">
+      <div class="temple-logo-wrap">🛕</div>
+      <div class="header-title">श्री हनुमंत मंदिर</div>
+      <div class="header-subtitle">गुवारा तैयबपुर • कौशांबी • उ.प्र.</div>
+      <div class="header-badges">
+        <div class="badge"><i class="fa-solid fa-star" style="font-size:9px;margin-right:3px;"></i> स्था. 2002</div>
+        <div class="badge"><i class="fa-solid fa-clock" style="font-size:9px;margin-right:3px;"></i> 5 AM – 9 PM</div>
+      </div>
     </div>
-    <button class="slide-btn prev" onclick="prevSlide()">‹</button>
-    <button class="slide-btn next" onclick="nextSlide()">›</button>
-    <div class="slide-dots" id="dots"></div>
-</section>
+  </div>
 
-<!-- CARDS -->
-<div class="section">
-    <div class="cards-grid" id="about">
-  <!-- Sundarkand Card -->
-        <div class="sund-card" id="sundarkand">
-            <div class="sund-card-top">
-                <div class="week-badge"><i class="fa-solid fa-fire"></i> हर मंगलवार</div>
-                <h2 class="serif">अपने नाम से सुंदरकांड पाठ करवाएँ</h2>
-            </div>
-            <div class="sund-card-body">
-                <ul class="benefit-list">
-                    <li>परिवार के नाम से विशेष पाठ</li>
-                    <li>मनोकामना पूर्ति हेतु पाठ</li>
-                    <li>पूजा सामग्री की पूरी सूची उपलब्ध</li>
-                    <li>पाठ प्रतिदिन मंगलवार शाम: 9 बजे</li>
-                    <li>प्रसाद वितरण एवं आरती</li>
-                </ul>
-                <a href="sundarkand.html" class="sund-cta">🙏 पूरी जानकारी देखें →</a>
-            </div>
+  <!-- Notifications Panel -->
+  <div class="notif-panel" id="notif-panel">
+    <div class="notif-header-title"><i class="fa-solid fa-bell" style="color:var(--saffron)"></i> सूचनाएँ</div>
+    <div class="notif-item"><div class="notif-dot2"></div><div><div class="notif-text">🪔 मंगलवार को सुंदरकांड पाठ — शाम 6:00 बजे</div><div class="notif-time">आज</div></div></div>
+    <div class="notif-item"><div class="notif-dot2"></div><div><div class="notif-text">🛕 दर्शन समय: प्रातः 5:00 — रात्रि 9:00</div><div class="notif-time">नियमित</div></div></div>
+    <div class="notif-item"><div class="notif-dot2"></div><div><div class="notif-text">📞 बुकिंग के लिए Dr. Subhash को WhatsApp करें</div><div class="notif-time">9792484696</div></div></div>
+  </div>
+
+  <div class="ticker-wrap">
+    <div class="ticker-inner">
+      <span>🪔 जय श्री राम</span><span>• जय हनुमान •</span>
+      <span>हर मंगलवार सुंदरकांड पाठ</span><span>• दर्शन: प्रातः 5 बजे से रात्रि 9 बजे •</span>
+      <span>🪔 जय श्री राम •</span><span>जय हनुमान •</span>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="quick-actions fade-up d1">
+      <div class="qa-item" onclick="showPage('sundarkand')">
+        <span class="qa-icon"><i class="fa-solid fa-book-open"></i></span>
+        <div class="qa-label">सुंदरकांड</div>
+      </div>
+      <div class="qa-item" onclick="confirmAction('whatsapp','https://wa.me/+919792484696','💬 WhatsApp खोलें?','डॉ. सुभाष को WhatsApp पर मैसेज भेजें — बुकिंग के लिए')">
+        <span class="qa-icon"><i class="fa-solid fa-calendar-check"></i></span>
+        <div class="qa-label">बुकिंग</div>
+      </div>
+      <div class="qa-item" onclick="confirmAction('map','https://maps.app.goo.gl/AMgLTXeWYyVQu91K8','🗺️ Maps खोलें?','Google Maps पर मंदिर का रास्ता देखें')">
+        <span class="qa-icon"><i class="fa-solid fa-map-location-dot"></i></span>
+        <div class="qa-label">रास्ता</div>
+      </div>
+      <div class="qa-item" onclick="confirmAction('call','tel:9792484696','📞 कॉल करें?','डॉ. सुभाष — 9792484696 पर कॉल करें')">
+        <span class="qa-icon"><i class="fa-solid fa-phone"></i></span>
+        <div class="qa-label">संपर्क</div>
+      </div>
+    </div>
+
+    <div class="section-header fade-up d2"><div class="section-title">दर्शन समय</div></div>
+    <div class="timing-cards fade-up d2">
+      <div class="timing-card aarti-morning" id="card-morning">
+        <span class="aarti-live-badge">🔴 LIVE</span>
+        <span class="tc-icon sunrise-icon">🌅</span>
+        <div class="tc-label">आरती</div>
+        <div class="tc-name">प्रातः आरती</div>
+        <div class="tc-time">7:00 AM</div>
+      </div>
+      <div class="timing-card aarti-evening" id="card-evening">
+        <span class="aarti-live-badge">🔴 LIVE</span>
+        <span class="tc-icon sunset-icon">🌇</span>
+        <div class="tc-label">आरती</div>
+        <div class="tc-name">सायंकाल</div>
+        <div class="tc-time">7:30 PM</div>
+      </div>
+      <div class="timing-card full-width">
+        <span class="tc-icon">🛕</span>
+        <div class="tc-label">दर्शन — सभी दिन खुला</div>
+        <div class="tc-name">प्रातः से रात्रि तक</div>
+        <div class="tc-time">5:00 AM — 9:00 PM</div>
+      </div>
+    </div>
+
+    <div class="featured-card fade-up d3">
+      <div class="fc-badge">✨ हर मंगलवार</div>
+      <div class="fc-title">सुंदरकांड पाठ</div>
+      <div class="fc-desc">अपने नाम से सुंदरकांड पाठ करवाएँ — परिवार के नाम से, मनोकामना पूर्ति हेतु, या विशेष पूजा के लिए। मंगलवार शाम 6:00 PM • प्रसाद वितरण एवं आरती।</div>
+      <button class="fc-btn" onclick="showPage('sundarkand')"><i class="fa-solid fa-hands-praying" style="margin-right:6px;"></i>पूरी जानकारी देखें →</button>
+    </div>
+
+    <div class="section-header fade-up d3"><div class="section-title">मंदिर परिचय</div></div>
+    <div class="info-card fade-up d3">
+      <div class="info-row">
+        <div class="info-icon-wrap"><i class="fa-solid fa-calendar-days"></i></div>
+        <div><div class="info-label">स्थापना</div><div class="info-value">12 सितंबर 2002</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon-wrap"><i class="fa-solid fa-om"></i></div>
+        <div><div class="info-label">मुख्य देवता</div><div class="info-value">श्री हनुमान जी महाराज</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon-wrap"><i class="fa-solid fa-star-and-crescent"></i></div>
+        <div><div class="info-label">प्राण प्रिय</div><div class="info-value">श्री राम–सीता–लक्ष्मण, दुर्गा माता</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon-wrap"><i class="fa-solid fa-location-dot"></i></div>
+        <div><div class="info-label">पता</div><div class="info-value">गुवारा तैयबपुर, कौशांबी, UP – 212201</div></div>
+      </div>
+    </div>
+
+    <div class="section-header fade-up d4">
+      <div class="section-title">गैलरी</div>
+      <span class="see-all" onclick="showPage('gallery')">सभी देखें →</span>
+    </div>
+    <div class="gallery-strip fade-up d4">
+      <div class="gallery-thumb" onclick="openLightbox('https://mrsatyamsoni.github.io/temple/temple.png','मंदिर')"><img src="https://mrsatyamsoni.github.io/temple/temple.png" alt="मंदिर" loading="lazy" /></div>
+      <div class="gallery-thumb" onclick="openLightbox('https://mrsatyamsoni.github.io/temple/hanumanji.png','हनुमान जी')"><img src="https://mrsatyamsoni.github.io/temple/hanumanji.png" alt="हनुमान जी" loading="lazy" /></div>
+      <div class="gallery-thumb" onclick="openLightbox('https://mrsatyamsoni.github.io/temple/ramji.png','राम दरबार')"><img src="https://mrsatyamsoni.github.io/temple/ramji.png" alt="राम दरबार" loading="lazy" /></div>
+      <div class="gallery-thumb" onclick="openLightbox('https://mrsatyamsoni.github.io/temple/durgamata.png','दुर्गा माता')"><img src="https://mrsatyamsoni.github.io/temple/durgamata.png" alt="दुर्गा माता" loading="lazy" /></div>
+      <div class="gallery-thumb" onclick="openLightbox('https://mrsatyamsoni.github.io/temple/sundarkand.png','सुंदरकांड')"><img src="https://mrsatyamsoni.github.io/temple/sundarkand.png" alt="सुंदरकांड" loading="lazy" /></div>
+      <div class="gallery-thumb" onclick="openLightbox('https://mrsatyamsoni.github.io/temple/paath.jpg','पाठ')"><img src="https://mrsatyamsoni.github.io/temple/paath.jpg" alt="पाठ" loading="lazy" /></div>
+    </div>
+
+    <div class="section-header fade-up d4"><div class="section-title">संपर्क</div></div>
+    <div class="contact-cards fade-up d4">
+      <div class="contact-card">
+        <div class="cc-avatar"><i class="fa-solid fa-user-tie"></i></div>
+        <div>
+          <div class="cc-role">अध्यक्ष</div>
+          <div class="cc-name">हरिश्चंद्र मौर्य</div>
+          <div class="cc-phone">7905264209</div>
         </div>
-
-        <!-- About Card -->
-        <div class="about-card">
-            <div class="about-card-top">
-                <div class="badge">मंदिर परिचय</div>
-                <h2 class="serif">श्री हनुमान मंदिर<br>गुवारा तैयबपुर</h2>
-            </div>
-            <div class="about-card-body">
-                <div class="info-row">
-                    <div class="icon"><i class="fa-solid fa-calendar-days"></i></div>
-                    <div class="text"><strong>स्थापना</strong>12 सितंबर 2002</div>
-                </div>
-                <div class="info-row">
-                    <div class="icon"><i class="fa-solid fa-om"></i></div>
-                    <div class="text"><strong>मुख्य देवता</strong>श्री हनुमान जी महाराज</div>
-                </div>
-                <div class="info-row">
-                    <div class="icon"><i class="fa-solid fa-om"></i></div>
-                    <div class="text"><strong>प्राण प्रिय</strong>श्री राम-सीता-लक्ष्मण, दुर्गा माता</div>
-                </div>
-                <div class="info-row">
-                    <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
-                    <div class="text"><strong>पता</strong>गुवारा तैयबपुर, कौशांबी UP</div>
-                </div>
-                <a href="#contact" class="card-cta">संपर्क करें →</a>
-            </div>
+        <div class="cc-actions">
+          <button class="cc-btn call" onclick="confirmAction('call','tel:7905264209','📞 कॉल करें?','हरिश्चंद्र मौर्य (अध्यक्ष) — 7905264209')"><i class="fa-solid fa-phone"></i></button>
+          <button class="cc-btn whatsapp" onclick="confirmAction('whatsapp','https://wa.me/+917905264209','💬 WhatsApp?','हरिश्चंद्र मौर्य जी को WhatsApp करें')"><i class="fa-brands fa-whatsapp"></i></button>
         </div>
-
-      
+      </div>
+      <div class="contact-card">
+        <div class="cc-avatar"><i class="fa-solid fa-user-doctor"></i></div>
+        <div>
+          <div class="cc-role">Dr. Subhash</div>
+          <div class="cc-name">डॉ. सुभाष</div>
+          <div class="cc-phone">9792484696</div>
+        </div>
+        <div class="cc-actions">
+          <button class="cc-btn call" onclick="confirmAction('call','tel:9792484696','📞 कॉल करें?','डॉ. सुभाष — 9792484696')"><i class="fa-solid fa-phone"></i></button>
+          <button class="cc-btn whatsapp" onclick="confirmAction('whatsapp','https://wa.me/+919792484696','💬 WhatsApp?','डॉ. सुभाष को WhatsApp करें — बुकिंग के लिए')"><i class="fa-brands fa-whatsapp"></i></button>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="cc-avatar"><i class="fa-solid fa-star"></i></div>
+        <div>
+          <div class="cc-role">Sub Manager</div>
+          <div class="cc-name">Aakash Singh Yadav</div>
+        </div>
+      </div>
     </div>
+
+    <div class="section-header fade-up d5"><div class="section-title">स्थान</div></div>
+    <div class="location-card fade-up d5">
+      <div class="map-placeholder"><i class="fa-solid fa-map-location-dot" style="font-size:36px;"></i></div>
+      <div class="location-text">
+        <i class="fa-solid fa-location-dot" style="color:var(--saffron);margin-right:6px;"></i> गुवारा तैयबपुर (करारी भरवारी रोड),<br/>
+        मंझनपुर, कौशांबी, उत्तर प्रदेश — 212201
+      </div>
+      <button class="map-btn" onclick="confirmAction('map','https://maps.app.goo.gl/AMgLTXeWYyVQu91K8','🗺️ Maps खोलें?','Google Maps पर मंदिर का रास्ता देखें')">
+        <i class="fa-solid fa-diamond-turn-right" style="margin-right:6px;"></i>Google Maps पर खोलें
+      </button>
+    </div>
+  </div>
 </div>
 
-<!-- TIMINGS -->
-<div class="section timings-section">
-    <div class="section-title">
-        <div class="kicker">✦ मंदिर समय ✦</div>
-        <h2 class="serif">दर्शन एवं आरती समय</h2>
+
+<!-- ═══════════════════════════════════════════ SUNDARKAND PAGE -->
+<div class="page" id="page-sundarkand">
+  <div class="inner-header">
+    <div class="inner-header-icon"><i class="fa-solid fa-book-open-reader" style="color:#fff;font-size:28px;"></i></div>
+    <div class="inner-header-text">
+      <div class="inner-header-title">सुंदरकांड पाठ</div>
+      <div class="inner-header-sub"><i class="fa-solid fa-clock" style="font-size:10px;margin-right:4px;"></i>हर मंगलवार • शाम 6:00 बजे</div>
     </div>
-    <div class="timings-grid">
-        <div class="timing-card">
-            <div class="t-icon">🌅</div>
-            <h3>आरती</h3>
-            <p>प्रातः आरती एवं<br>सायंकाल आरती</p>
-            <div class="time-pill">सुबह 7:00 • शाम 7:30</div>
+  </div>
+
+  <div class="sk-page">
+    <div class="sk-hero">
+      <div class="sk-hero-bg"></div>
+      <div class="sk-hero-content">
+        <span class="sk-om">ॐ</span>
+        <div class="sk-hero-title">सुंदरकांड पाठ</div>
+        <div class="sk-hero-sub">अपने नाम से करवाएँ • फल प्राप्त करें<br>हर मंगलवार • गुवारा तैयबपुर, कौशांबी</div>
+        <div class="sk-shlok">
+          "मनोजवं मारुततुल्यवेगं<br>
+          जितेन्द्रियं बुद्धिमतां वरिष्ठम्"<br>
+          <small style="opacity:0.75">श्री हनुमान जी की कृपा से सभी मनोकामनाएँ पूर्ण होती हैं</small>
         </div>
-        <div class="timing-card">
-            <div class="t-icon">📖</div>
-            <h3>सुंदरकांड पाठ</h3>
-            <p>प्रत्येक मंगलवार<br>विशेष पाठ का आयोजन</p>
-            <div class="time-pill">मंगलवार 7:00 PM</div>
-        </div>
-        <div class="timing-card">
-            <div class="t-icon">🛕</div>
-            <h3>दर्शन समय</h3>
-            <p>प्रातः से रात्रि तक<br>सभी दिन खुला</p>
-            <div class="time-pill">5:00 AM – 9:00 PM</div>
-        </div>
+      </div>
+      <!-- Jyoti / Diya animation -->
+      <div class="jyoti-wrap">
+        <div class="jyoti"><div class="jyoti-flame"></div><div class="jyoti-stick"></div><div class="jyoti-base"></div></div>
+        <div class="jyoti"><div class="jyoti-flame"></div><div class="jyoti-stick"></div><div class="jyoti-base"></div></div>
+        <div class="jyoti"><div class="jyoti-flame"></div><div class="jyoti-stick"></div><div class="jyoti-base"></div></div>
+      </div>
     </div>
+
+    <div class="sk-section">
+      <div class="sk-card">
+        <div class="sk-card-title"><i class="fa-solid fa-scroll" style="color:var(--saffron);"></i> सुंदरकांड क्या है?</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.8;">
+          सुंदरकांड रामचरितमानस का पाँचवाँ कांड है जिसमें हनुमान जी की लंका यात्रा का वर्णन है। इस पाठ को करने या सुनने से भक्त को विशेष फल की प्राप्ति होती है। मंदिर में प्रत्येक मंगलवार को विधिपूर्वक इस पाठ का आयोजन किया जाता है।
+        </p>
+        <div class="sk-benefits" style="margin-top:14px;">
+          <div class="sk-benefit-item"><i class="fa-solid fa-shield-halved" style="color:var(--saffron);"></i> संकट से मुक्ति</div>
+          <div class="sk-benefit-item"><i class="fa-solid fa-heart" style="color:var(--saffron);"></i> मनोकामना पूर्ति</div>
+          <div class="sk-benefit-item"><i class="fa-solid fa-house-chimney" style="color:var(--saffron);"></i> परिवार में सुख</div>
+          <div class="sk-benefit-item"><i class="fa-solid fa-arrow-trend-up" style="color:var(--saffron);"></i> व्यापार उन्नति</div>
+          <div class="sk-benefit-item"><i class="fa-solid fa-staff-snake" style="color:var(--saffron);"></i> रोग निवारण</div>
+          <div class="sk-benefit-item"><i class="fa-solid fa-hand-holding-heart" style="color:var(--saffron);"></i> बुरी शक्ति से रक्षा</div>
+        </div>
+      </div>
+
+      <div class="sk-card">
+        <div class="sk-card-title"><i class="fa-solid fa-clock" style="color:var(--saffron);"></i> समय-सारिणी</div>
+        <div class="sk-timing-grid">
+          <div class="sk-timing-item"><div class="sk-timing-label">पाठ दिन</div><div class="sk-timing-val">हर मंगलवार</div></div>
+          <div class="sk-timing-item"><div class="sk-timing-label">आरंभ समय</div><div class="sk-timing-val">6:00 PM</div></div>
+          <div class="sk-timing-item"><div class="sk-timing-label">अवधि</div><div class="sk-timing-val">~2 घंटे</div></div>
+          <div class="sk-timing-item"><div class="sk-timing-label">प्रसाद</div><div class="sk-timing-val">आरती बाद</div></div>
+        </div>
+      </div>
+
+      <div class="sk-card">
+        <div class="sk-card-title"><i class="fa-solid fa-list-check" style="color:var(--saffron);"></i> पाठ कैसे करवाएँ?</div>
+        <div class="sk-steps">
+          <div class="sk-step"><div class="sk-step-num">1</div><div><div class="sk-step-label">नाम दर्ज करवाएँ</div><div class="sk-step-desc">WhatsApp पर अपना और परिवार का नाम, गोत्र भेजें। बुकिंग की पुष्टि होगी।</div></div></div>
+          <div class="sk-step"><div class="sk-step-num">2</div><div><div class="sk-step-label">पूजा सामग्री लाएँ</div><div class="sk-step-desc">नीचे दी गई सूची के अनुसार सामग्री तैयार करें। सामग्री मंदिर पर भी उपलब्ध होती है।</div></div></div>
+          <div class="sk-step"><div class="sk-step-num">3</div><div><div class="sk-step-label">5:45 PM तक पहुँचें</div><div class="sk-step-desc">पाठ 6:00 PM पर आरंभ होता है। समय से पहले पहुँचें।</div></div></div>
+          <div class="sk-step"><div class="sk-step-num">4</div><div><div class="sk-step-label">आरती एवं प्रसाद</div><div class="sk-step-desc">पाठ समाप्ति के बाद हनुमान जी की आरती होगी और प्रसाद वितरण होगा।</div></div></div>
+        </div>
+      </div>
+
+      <!-- Checklist with session storage -->
+      <div class="sk-card">
+        <div class="sk-card-title"><i class="fa-solid fa-basket-shopping" style="color:var(--saffron);"></i> पूजा सामग्री सूची</div>
+        <div class="sk-check-count" id="check-count">0 / 15 सामग्री चेक की गई</div>
+        <div id="sk-checklist">
+          <div class="sk-check-item" data-id="0" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🌺 लाल फूल (गेंदा / गुलाब)</span><span class="sk-check-qty">1 माला</span></div>
+          <div class="sk-check-item" data-id="1" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🔴 सिंदूर</span><span class="sk-check-qty">1 पुड़िया</span></div>
+          <div class="sk-check-item" data-id="2" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🌿 चंदन</span><span class="sk-check-qty">थोड़ा</span></div>
+          <div class="sk-check-item" data-id="3" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🕯️ अगरबत्ती</span><span class="sk-check-qty">1 पैकेट</span></div>
+          <div class="sk-check-item" data-id="4" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🪔 घी का दीपक</span><span class="sk-check-qty">मिट्टी दीया + घी</span></div>
+          <div class="sk-check-item" data-id="5" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🌱 तुलसी पत्र</span><span class="sk-check-qty">कुछ पत्तियाँ</span></div>
+          <div class="sk-check-item" data-id="6" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🍃 पान के पत्ते</span><span class="sk-check-qty">5–7 पत्ते</span></div>
+          <div class="sk-check-item" data-id="7" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🥥 नारियल (श्रीफल)</span><span class="sk-check-qty">1 नारियल</span></div>
+          <div class="sk-check-item" data-id="8" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🍌 केला</span><span class="sk-check-qty">1 दर्जन</span></div>
+          <div class="sk-check-item" data-id="9" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🍬 मिठाई / लड्डू</span><span class="sk-check-qty">प्रसाद हेतु</span></div>
+          <div class="sk-check-item" data-id="10" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🧶 मौली (कलावा)</span><span class="sk-check-qty">1 धागा</span></div>
+          <div class="sk-check-item" data-id="11" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🌾 अक्षत (चावल)</span><span class="sk-check-qty">मुट्ठी भर</span></div>
+          <div class="sk-check-item" data-id="12" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">💧 जल (गंगाजल)</span><span class="sk-check-qty">लोटा भर</span></div>
+          <div class="sk-check-item" data-id="13" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🔥 कपूर</span><span class="sk-check-qty">5–7 टिकिया</span></div>
+          <div class="sk-check-item" data-id="14" onclick="toggleCheck(this)"><div class="sk-checkbox"></div><span class="sk-check-label">🟡 बेसन के लड्डू</span><span class="sk-check-qty">हनुमान जी प्रिय</span></div>
+        </div>
+        <button onclick="resetChecklist()" style="margin-top:12px;background:none;border:1px solid var(--border);border-radius:10px;padding:7px 14px;font-size:12px;color:var(--text3);cursor:pointer;width:100%;"><i class="fa-solid fa-rotate-left" style="margin-right:6px;"></i>सूची रीसेट करें</button>
+      </div>
+
+      <div class="sk-card">
+        <div class="sk-card-title"><i class="fa-solid fa-circle-info" style="color:var(--saffron);"></i> महत्वपूर्ण बातें</div>
+        <div>
+          <div class="sk-rule-item"><span>🌿</span> पाठ के दिन शुद्ध, सात्विक भोजन ग्रहण करें। मांस, मछली, अंडा से बचें।</div>
+          <div class="sk-rule-item"><span>🧘</span> पाठ में ध्यानपूर्वक बैठें। मोबाइल को साइलेंट रखें।</div>
+          <div class="sk-rule-item"><span>👗</span> पीले, नारंगी या लाल वस्त्र पहन कर आना शुभ माना जाता है।</div>
+          <div class="sk-rule-item"><span>⏰</span> पाठ 6:00 PM पर आरंभ होता है। कृपया 5:45 PM तक पहुँचें।</div>
+          <div class="sk-rule-item"><span>📿</span> पाठ के दौरान हनुमान चालीसा या राम नाम का मानसिक जप करें।</div>
+          <div class="sk-rule-item"><span>🤲</span> पाठ के बाद प्रसाद सभी को बाँटें। घर ले जाकर परिवार को दें।</div>
+        </div>
+      </div>
+
+      <button class="sk-wa-btn" onclick="confirmAction('whatsapp','https://wa.me/+919792484696?text=नमस्ते%2C%20मैं%20सुंदरकांड%20पाठ%20की%20बुकिंग%20करना%20चाहता%20हूँ','💬 WhatsApp बुकिंग?','डॉ. सुभाष को WhatsApp पर बुकिंग संदेश भेजें')">
+        <i class="fa-brands fa-whatsapp" style="margin-right:8px;"></i>WhatsApp पर बुकिंग करें
+      </button>
+      <div style="height:10px;"></div>
+    </div>
+  </div>
 </div>
 
-<!-- LOCATION -->
-<div class="section location-section">
-    <div class="location-box">
-        <div class="location-info">
-            <h3 class="serif">🗺️ मंदिर का पता</h3>
-            <div class="addr-row">
-                <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
-                <p>गुवारा तैयबपुर (करारी भरवारी रोड),<br>मंझनपुर, कौशांबी,<br>उत्तर प्रदेश – 212201</p>
-            </div>
-            <div class="addr-row">
-                <div class="icon"><i class="fa-solid fa-clock"></i></div>
-                <p>दर्शन समय: प्रातः 5:00 AM<br>से रात्रि 9:00 PM तक</p>
-            </div>
-            <a href="https://maps.app.goo.gl/AMgLTXeWYyVQu91K8" target="_blank" class="map-btn">
-                <i class="fa-solid fa-map-location-dot"></i> Google Maps पर खोलें
-            </a>
-        </div>
-       
-    </div>
-</div>
 
-<!-- GALLERY -->
-<div class="section gallery-section" id="gallery">
-    <div class="section-title">
-        <div class="kicker">✦ झलकियाँ ✦</div>
-        <h2 class="serif">मंदिर गैलरी</h2>
+<!-- ═══════════════════════════════════════════ GALLERY PAGE -->
+<div class="page" id="page-gallery">
+  <div class="inner-header">
+    <div class="inner-header-icon"><i class="fa-solid fa-images" style="color:#fff;font-size:28px;"></i></div>
+    <div class="inner-header-text">
+      <div class="inner-header-title">मंदिर गैलरी</div>
+      <div class="inner-header-sub"><i class="fa-solid fa-camera" style="font-size:10px;margin-right:4px;"></i>दर्शन • आरती • पाठ</div>
     </div>
+  </div>
+  <div class="gallery-page-content">
     <div class="gallery-grid">
-        <div class="gallery-item">
-            <img src="temple.png" alt="मंदिर">
-        </div>
-        <div class="gallery-item">
-            <img src="hanumanji.png" alt="हनुमान जी">
-        </div>
-        <div class="gallery-item">
-            <img src="sundarkand.png" alt="सुंदरकांड">
-        </div>
-        <div class="gallery-item">
-            <img src="paath.jpg" alt="सुंदरकांड">
-        </div>
-        <div class="gallery-item">
-            <img src="ramji.png" alt="राम दरबार">
-        </div>
-        <div class="gallery-item">
-            <img src="durgamata.png" alt="दुर्गा माता">
-        </div>
+      <div class="gallery-grid-item tall" onclick="openLightbox('https://mrsatyamsoni.github.io/temple/temple.png','श्री हनुमंत मंदिर')">
+        <img src="https://mrsatyamsoni.github.io/temple/temple.png" alt="मंदिर" loading="lazy" />
+        <div class="gallery-grid-caption"><i class="fa-solid fa-gopuram" style="margin-right:4px;"></i>श्री हनुमंत मंदिर</div>
+      </div>
+      <div class="gallery-grid-item" onclick="openLightbox('https://mrsatyamsoni.github.io/temple/hanumanji.png','हनुमान जी महाराज')">
+        <img src="https://mrsatyamsoni.github.io/temple/hanumanji.png" alt="हनुमान जी" loading="lazy" />
+        <div class="gallery-grid-caption"><i class="fa-solid fa-hands-praying" style="margin-right:4px;"></i>हनुमान जी</div>
+      </div>
+      <div class="gallery-grid-item" onclick="openLightbox('https://mrsatyamsoni.github.io/temple/durgamata.png','दुर्गा माता')">
+        <img src="https://mrsatyamsoni.github.io/temple/durgamata.png" alt="दुर्गा माता" loading="lazy" />
+        <div class="gallery-grid-caption"><i class="fa-solid fa-fire-flame-curved" style="margin-right:4px;"></i>दुर्गा माता</div>
+      </div>
+      <div class="gallery-grid-item tall" onclick="openLightbox('https://mrsatyamsoni.github.io/temple/ramji.png','श्री राम दरबार')">
+        <img src="https://mrsatyamsoni.github.io/temple/ramji.png" alt="राम दरबार" loading="lazy" />
+        <div class="gallery-grid-caption"><i class="fa-solid fa-crown" style="margin-right:4px;"></i>श्री राम दरबार</div>
+      </div>
+      <div class="gallery-grid-item" onclick="openLightbox('https://mrsatyamsoni.github.io/temple/sundarkand.png','सुंदरकांड पाठ')">
+        <img src="https://mrsatyamsoni.github.io/temple/sundarkand.png" alt="सुंदरकांड" loading="lazy" />
+        <div class="gallery-grid-caption"><i class="fa-solid fa-book-open" style="margin-right:4px;"></i>सुंदरकांड पाठ</div>
+      </div>
+      <div class="gallery-grid-item" onclick="openLightbox('https://mrsatyamsoni.github.io/temple/paath.jpg','पाठ समारोह')">
+        <img src="https://mrsatyamsoni.github.io/temple/paath.jpg" alt="पाठ" loading="lazy" />
+        <div class="gallery-grid-caption"><i class="fa-solid fa-people-group" style="margin-right:4px;"></i>पाठ समारोह</div>
+      </div>
     </div>
+    <div style="margin-top:18px; text-align:center; font-size:12px; color:var(--text3); padding-bottom:10px;">
+      <i class="fa-solid fa-hands-praying" style="color:var(--saffron);margin-right:6px;"></i>जय श्री राम • जय हनुमान
+    </div>
+  </div>
 </div>
 
-<!-- CONTACT INFO (standalone) -->
-<div class="section contact-section" id="contact">
-    <div class="section-title">
-        <div class="kicker">✦ हमसे मिलें ✦</div>
-        <h2 class="serif">संपर्क जानकारी</h2>
+
+<!-- ═══════════════════════════════════════════ ABOUT PAGE -->
+<div class="page" id="page-about">
+  <div class="inner-header">
+    <div class="inner-header-icon"><i class="fa-solid fa-circle-info" style="color:#fff;font-size:28px;"></i></div>
+    <div class="inner-header-text">
+      <div class="inner-header-title">परिचय / About</div>
+      <div class="inner-header-sub"><i class="fa-solid fa-temple" style="font-size:10px;margin-right:4px;"></i>मंदिर एवं App के बारे में</div>
     </div>
-    <div class="contact-info-grid">
-        <div class="contact-info-card">
-            <div class="ci-icon"><i class="fa-solid fa-user-tie"></i></div>
-            <h4>अध्यक्ष</h4>
-            <p>हरिश्चंद्र मौर्य</p><br>
-               <p><a href="tel:7905264209">(Anoop) 7905264209</a></p>
-
-        </div>
-
-        <div class="contact-info-card">
-            <div class="ci-icon"><i class="fa-solid fa-phone"></i></div>
-            <h4>Dr Subhash</h4>
-            <p><a href="tel:9792484696">9792484696</a></p>
-        </div>
-
-        <div class="contact-info-card">
-            <div class="ci-icon"><i class="fa-solid fa-clipboard-user"></i></div>
-            <h4>Sub Manager</h4>
-            <p>Aakash Singh Yadav</p>
-        </div>
+  </div>
+  <div class="about-page">
+    <div class="about-hero">
+      <span class="about-hero-icon">🛕</span>
+      <div class="about-hero-title">श्री हनुमंत मंदिर</div>
+      <div class="about-hero-sub">गुवारा तैयबपुर, कौशांबी, उत्तर प्रदेश<br>सेवा में: 2002 से निरंतर</div>
     </div>
+    <div class="about-section">
+      <div class="about-card">
+        <div class="about-card-title"><i class="fa-solid fa-gopuram" style="color:var(--saffron);"></i> मंदिर परिचय</div>
+        <p class="about-desc">श्री हनुमंत मंदिर, गुवारा तैयबपुर की स्थापना 12 सितंबर 2002 को हुई थी। यह मंदिर भक्तों की आस्था का प्रमुख केंद्र है। यहाँ श्री हनुमान जी महाराज के साथ-साथ श्री राम–सीता–लक्ष्मण एवं माँ दुर्गा के भी दर्शन होते हैं। प्रत्येक मंगलवार को सुंदरकांड पाठ का आयोजन किया जाता है।</p>
+        <div class="about-stat-grid" style="margin-top:14px;">
+          <div class="about-stat"><div class="about-stat-val">2002</div><div class="about-stat-label">स्थापना वर्ष</div></div>
+          <div class="about-stat"><div class="about-stat-val">24+</div><div class="about-stat-label">वर्षों की सेवा</div></div>
+          <div class="about-stat"><div class="about-stat-val">हर मंगल</div><div class="about-stat-label">सुंदरकांड पाठ</div></div>
+          <div class="about-stat"><div class="about-stat-val">5–9</div><div class="about-stat-label">दर्शन AM–PM</div></div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-title"><i class="fa-solid fa-address-card" style="color:var(--saffron);"></i> पता एवं सम्पर्क</div>
+        <div class="about-row">
+          <div class="about-row-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div><div class="about-row-label">पूरा पता</div><div class="about-row-val">गुवारा तैयबपुर (करारी भरवारी रोड), मंझनपुर, कौशांबी, UP – 212201</div></div>
+        </div>
+        <div class="about-row">
+          <div class="about-row-icon"><i class="fa-solid fa-phone"></i></div>
+          <div><div class="about-row-label">अध्यक्ष — हरिश्चंद्र मौर्य</div><div class="about-row-val">7905264209</div></div>
+        </div>
+        <div class="about-row">
+          <div class="about-row-icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <div><div class="about-row-label">WhatsApp (बुकिंग) — डॉ. सुभाष</div><div class="about-row-val">9792484696</div></div>
+        </div>
+        <button class="map-btn" style="margin-top:14px;" onclick="confirmAction('map','https://maps.app.goo.gl/AMgLTXeWYyVQu91K8','🗺️ Maps खोलें?','Google Maps पर मंदिर का रास्ता देखें')">
+          <i class="fa-solid fa-diamond-turn-right" style="margin-right:6px;"></i>Google Maps पर देखें
+        </button>
+      </div>
+      <div class="about-card">
+        <div class="about-card-title"><i class="fa-solid fa-mobile-screen" style="color:var(--saffron);"></i> इस App के बारे में</div>
+        <p class="about-desc">यह App श्री हनुमंत मंदिर, कौशांबी के भक्तों की सुविधा के लिए बनाई गई है। इसमें मंदिर की सम्पूर्ण जानकारी, सुंदरकांड पाठ की विधि, गैलरी एवं संपर्क विवरण उपलब्ध है।</p>
+        <div class="dev-note" style="margin-top:12px;"><i class="fa-solid fa-lightbulb" style="color:var(--saffron);margin-right:6px;"></i> App में कोई बदलाव, सुझाव या नई जानकारी जोड़नी हो तो नीचे Instagram पर संपर्क करें।</div>
+      </div>
+
+      <!-- Instagram Card -->
+      <div class="insta-card" onclick="openLink('https://instagram.com/mrsatyamsoni')">
+        <span class="insta-icon"><i class="fa-brands fa-instagram" style="font-size:42px; color:#fff;"></i></span>
+        <div class="insta-handle">
+          <i class="fa-brands fa-instagram"></i> @mrsatyamsoni
+        </div>
+        <div class="insta-desc">App में बदलाव, सुझाव या किसी भी प्रकार के सहयोग के लिए<br>Instagram पर DM करें</div>
+        <div class="insta-btn"><i class="fa-brands fa-instagram" style="margin-right:6px;"></i>Instagram पर संपर्क करें →</div>
+      </div>
+
+      <div style="text-align:center; font-size:11px; color:var(--text3); padding-bottom:20px; line-height:1.8;">
+        <i class="fa-solid fa-hands-praying" style="color:var(--saffron);"></i> जय श्री राम • जय हनुमान<br>
+        © 2002 – 2026 श्री हनुमान मंदिर, गुवारा तैयबपुर, कौशांबी
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- FORM (separate section) -->
-<div class="section form-section">
-    <div class="form-wrapper">
-        <div class="form-sidebar">
-            <div>
-                <h2 class="serif">संदेश भेजें या बुकिंग करें</h2>
-                <p>सुंदरकांड पाठ बुकिंग, पूजा की जानकारी, या कोई भी प्रश्न के लिए नीचे फॉर्म भरें।</p>
 
-                <ul class="sidebar-features">
-                    <li>
-                        <div class="sf-icon"><i class="fa-solid fa-book-open"></i></div>
-                        सुंदरकांड पाठ बुकिंग
-                    </li>
-                    <li>
-                        <div class="sf-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
-                        हवन एवं विशेष पूजा
-                    </li>
-                    <li>
-                        <div class="sf-icon"><i class="fa-solid fa-question-circle"></i></div>
-                        कोई भी जानकारी
-                    </li>
-                    <li>
-                        <div class="sf-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                        विशेष दिन बुकिंग
-                    </li>
-                </ul>
-            </div>
-            <div class="sidebar-bottom">
-                <a href="https://wa.me/+919792484696" target="_blank" class="whatsapp-link">
-                    <i class="fa-brands fa-whatsapp" style="font-size:22px;"></i>
-                    Subhash ji ko WhatsApp पर मैसेज करें
-                </a>
-            </div>
-        </div>
-
-    </div>
+<!-- ═══════════════════════════════════════════ BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="nav-item active" id="nav-home" onclick="showPage('home')">
+    <div class="nav-icon"><i class="fa-solid fa-house"></i></div>
+    <div class="nav-label">होम</div>
+    <div class="nav-dot" id="dot-home"></div>
+  </div>
+  <div class="nav-item" id="nav-sundarkand" onclick="showPage('sundarkand')">
+    <div class="nav-icon"><i class="fa-solid fa-book-open"></i></div>
+    <div class="nav-label">सुंदरकांड</div>
+  </div>
+  <div class="nav-item" id="nav-gallery" onclick="showPage('gallery')">
+    <div class="nav-icon"><i class="fa-solid fa-images"></i></div>
+    <div class="nav-label">गैलरी</div>
+  </div>
+  <div class="nav-item" id="nav-about" onclick="showPage('about')">
+    <div class="nav-icon"><i class="fa-solid fa-circle-info"></i></div>
+    <div class="nav-label">About</div>
+  </div>
 </div>
 
-<!-- FOOTER (completely new) -->
-<footer>
-    <div class="footer-top">
-        <div class="footer-brand">
-            <div class="brand-icon">🛕</div>
-            <h3 class="serif">श्री हनुमान मंदिर</h3>
-            <div class="est">स्थापना • 2002</div>
-            <p>गुवारा तैयबपुर, मंझनपुर, कौशांबी, उत्तर प्रदेश में स्थित यह मंदिर भक्ति और शांति का पवित्र स्थान है।</p>
-            <div class="footer-socials" style="margin-top:20px;">For Changes or Feedback -> 
-                <a href="https://instagram.com/mrsatyamsoni" target="_blank" class="social-btn">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-              
 
-            </div>
-        </div>
-
-    
-
-    <div class="footer-bottom">
-        <div class="footer-bottom-inner">
-            <p>© 2002 – 2026 &nbsp;|&nbsp; <span class="jai">जय हनुमान • जय श्री राम</span></p>  
-            <p class="dev-credit">Feedback: <a href="https://instagram.com/mrsatyamsoni" target="_blank">Instagram</a></p>
-        </div>
+<!-- ═══════════════════════════════════════════ DRAWER -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-logo">🛕</div>
+    <div class="drawer-title">श्री हनुमंत मंदिर</div>
+    <div class="drawer-subtitle">गुवारा तैयबपुर • कौशांबी</div>
+  </div>
+  <div class="drawer-nav">
+    <div class="drawer-item" onclick="closeDrawer(); showPage('home')">
+      <div class="drawer-item-icon"><i class="fa-solid fa-house"></i></div>
+      <div><div class="drawer-item-label">होम</div><div class="drawer-item-sublabel">मुख्य पृष्ठ</div></div>
     </div>
-</footer>
+    <div class="drawer-item" onclick="closeDrawer(); showPage('sundarkand')">
+      <div class="drawer-item-icon"><i class="fa-solid fa-book-open"></i></div>
+      <div><div class="drawer-item-label">सुंदरकांड पाठ</div><div class="drawer-item-sublabel">हर मंगलवार • 6:00 PM</div></div>
+    </div>
+    <div class="drawer-item" onclick="closeDrawer(); showPage('gallery')">
+      <div class="drawer-item-icon"><i class="fa-solid fa-images"></i></div>
+      <div><div class="drawer-item-label">गैलरी</div><div class="drawer-item-sublabel">मंदिर की तस्वीरें</div></div>
+    </div>
+    <div class="drawer-item" onclick="closeDrawer(); showPage('about')">
+      <div class="drawer-item-icon"><i class="fa-solid fa-circle-info"></i></div>
+      <div><div class="drawer-item-label">About / परिचय</div><div class="drawer-item-sublabel">मंदिर एवं App के बारे में</div></div>
+    </div>
+    <div class="drawer-divider"></div>
+    <div class="drawer-item" onclick="closeDrawer(); confirmAction('map','https://maps.app.goo.gl/AMgLTXeWYyVQu91K8','🗺️ Maps खोलें?','Google Maps पर मंदिर का रास्ता देखें')">
+      <div class="drawer-item-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+      <div><div class="drawer-item-label">रास्ता / Directions</div><div class="drawer-item-sublabel">Google Maps पर खोलें</div></div>
+    </div>
+    <div class="drawer-item" onclick="closeDrawer(); confirmAction('whatsapp','https://wa.me/+919792484696','💬 WhatsApp?','डॉ. सुभाष को WhatsApp पर मैसेज भेजें')">
+      <div class="drawer-item-icon"><i class="fa-brands fa-whatsapp"></i></div>
+      <div><div class="drawer-item-label">WhatsApp बुकिंग</div><div class="drawer-item-sublabel">पाठ, पूजा बुकिंग</div></div>
+    </div>
+    <div class="drawer-item" onclick="closeDrawer(); confirmAction('call','tel:9792484696','📞 कॉल करें?','डॉ. सुभाष — 9792484696')">
+      <div class="drawer-item-icon"><i class="fa-solid fa-phone"></i></div>
+      <div><div class="drawer-item-label">कॉल करें</div><div class="drawer-item-sublabel">9792484696</div></div>
+    </div>
+    <div class="drawer-divider"></div>
+    <div class="drawer-item" onclick="closeDrawer(); toggleTheme()">
+      <div class="drawer-item-icon"><i class="fa-solid fa-circle-half-stroke" id="drawer-theme-icon"></i></div>
+      <div><div class="drawer-item-label" id="drawer-theme-label">Dark Mode</div><div class="drawer-item-sublabel">Theme बदलें</div></div>
+    </div>
+    <div class="drawer-item" onclick="closeDrawer(); openLink('https://instagram.com/mrsatyamsoni')">
+      <div class="drawer-item-icon"><i class="fa-brands fa-instagram"></i></div>
+      <div><div class="drawer-item-label">@mrsatyamsoni</div><div class="drawer-item-sublabel">Feedback / सुझाव</div></div>
+    </div>
+  </div>
+  <div class="drawer-footer">
+    <i class="fa-solid fa-hands-praying" style="color:var(--saffron);"></i> जय श्री राम • जय हनुमान<br>
+    © 2002–2026 श्री हनुमान मंदिर, कौशांबी
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ CONFIRM DIALOG -->
+<div class="confirm-overlay" id="confirm-overlay">
+  <div class="confirm-box">
+    <span class="confirm-icon" id="confirm-icon">📞</span>
+    <div class="confirm-title" id="confirm-title">क्या आप निश्चित हैं?</div>
+    <div class="confirm-msg" id="confirm-msg">इस लिंक को खोलें?</div>
+    <div class="confirm-btns">
+      <button class="confirm-btn cancel" onclick="closeConfirm()"><i class="fa-solid fa-xmark" style="margin-right:5px;"></i>रद्द करें</button>
+      <button class="confirm-btn ok" id="confirm-ok"><i class="fa-solid fa-check" style="margin-right:5px;"></i>हाँ, खोलें</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+  <img id="lightbox-img" src="" alt="" />
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
 
 <script>
-    // Preloader
-    window.onload = () => {
-        setTimeout(() => {
-            document.getElementById('preloader').style.opacity = '0';
-            setTimeout(() => document.getElementById('preloader').style.display = 'none', 800);
-        }, 1200);
+/* ══════════════════════════════════════════════════════
+   LIVE CLOCK WITH SECONDS
+══════════════════════════════════════════════════════ */
+function updateClock() {
+  const now = new Date();
+  const h = now.getHours().toString().padStart(2,'0');
+  const m = now.getMinutes().toString().padStart(2,'0');
+  const s = now.getSeconds().toString().padStart(2,'0');
+  document.getElementById('clock').textContent = h + ':' + m + ':' + s;
+  checkAartiTime(now);
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+/* ══════════════════════════════════════════════════════
+   BATTERY STATUS
+══════════════════════════════════════════════════════ */
+async function updateBattery() {
+  try {
+    const bat = await navigator.getBattery();
+    const applyBat = (b) => {
+      const pct = Math.round(b.level * 100);
+      document.getElementById('battery-pct').textContent = pct + '%';
+      const fill = document.getElementById('battery-fill');
+      fill.style.width = pct + '%';
+      fill.className = 'battery-fill ' + (pct > 50 ? 'high' : pct > 20 ? 'mid' : 'low');
     };
+    applyBat(bat);
+    bat.addEventListener('levelchange', () => applyBat(bat));
+  } catch(e) {
+    // Battery API not supported — use random simulation
+    let fakePct = 78;
+    document.getElementById('battery-pct').textContent = fakePct + '%';
+    document.getElementById('battery-fill').style.width = fakePct + '%';
+  }
+}
+updateBattery();
 
-    // Slider
-    let cur = 0;
-    const slides = document.querySelectorAll('.slide');
-    const dotsContainer = document.getElementById('dots');
+/* ══════════════════════════════════════════════════════
+   AARTI TIME ANIMATION CHECK
+══════════════════════════════════════════════════════ */
+function checkAartiTime(now) {
+  const h = now.getHours(), m = now.getMinutes();
+  const morningOn = (h === 7 && m >= 0 && m < 30);
+  const eveningOn = (h === 19 && m >= 30 && m < 60) || (h === 20 && m === 0);
+  document.getElementById('card-morning').classList.toggle('is-aarti-time', morningOn);
+  document.getElementById('card-evening').classList.toggle('is-aarti-time', eveningOn);
+}
 
-    slides.forEach((_, i) => {
-        const d = document.createElement('div');
-        d.className = 'dot' + (i === 0 ? ' active' : '');
-        d.onclick = () => goTo(i);
-        dotsContainer.appendChild(d);
-    });
+/* ══════════════════════════════════════════════════════
+   PAGE NAVIGATION
+══════════════════════════════════════════════════════ */
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => {
+    n.classList.remove('active');
+    const dot = n.querySelector('.nav-dot');
+    if (dot) dot.remove();
+  });
+  const target = document.getElementById('page-' + name);
+  if (target) { target.classList.add('active'); }
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) {
+    navEl.classList.add('active');
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot';
+    navEl.appendChild(dot);
+  }
+  // Close notif if open
+  document.getElementById('notif-panel').classList.remove('open');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    function goTo(n) {
-        slides[cur].classList.remove('active');
-        dotsContainer.children[cur].classList.remove('active');
-        cur = (n + slides.length) % slides.length;
-        slides[cur].classList.add('active');
-        dotsContainer.children[cur].classList.add('active');
+  // GSAP entry animation
+  if (typeof gsap !== 'undefined' && target) {
+    gsap.from(target, { opacity: 0, y: 24, duration: 0.38, ease: 'power2.out' });
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   THEME TOGGLE
+══════════════════════════════════════════════════════ */
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  sessionStorage.setItem('theme', isDark ? 'light' : 'dark');
+  updateThemeIcons(!isDark);
+}
+function updateThemeIcons(isDark) {
+  const ti = document.getElementById('theme-icon');
+  const dl = document.getElementById('drawer-theme-label');
+  if (ti) ti.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-circle-half-stroke';
+  if (dl) dl.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+}
+// Load saved theme
+(function() {
+  const saved = sessionStorage.getItem('theme');
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved);
+    updateThemeIcons(saved === 'dark');
+  }
+})();
+
+/* ══════════════════════════════════════════════════════
+   DRAWER
+══════════════════════════════════════════════════════ */
+function openDrawer() {
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('drawerOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drawerOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ══════════════════════════════════════════════════════
+   NOTIFICATIONS
+══════════════════════════════════════════════════════ */
+function toggleNotif() {
+  document.getElementById('notif-panel').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const panel = document.getElementById('notif-panel');
+  const bell = document.querySelector('.bell-wrap');
+  if (panel.classList.contains('open') && !bell.contains(e.target) && !panel.contains(e.target)) {
+    panel.classList.remove('open');
+  }
+});
+
+/* ══════════════════════════════════════════════════════
+   CONFIRM DIALOG
+══════════════════════════════════════════════════════ */
+let confirmUrl = '';
+function confirmAction(type, url, title, msg) {
+  confirmUrl = url;
+  const icons = { call:'📞', whatsapp:'💬', map:'🗺️', link:'🔗' };
+  document.getElementById('confirm-icon').textContent = icons[type] || '🔗';
+  document.getElementById('confirm-title').textContent = title;
+  document.getElementById('confirm-msg').textContent = msg;
+  document.getElementById('confirm-ok').onclick = function() {
+    closeConfirm();
+    openLink(confirmUrl);
+  };
+  document.getElementById('confirm-overlay').classList.add('open');
+}
+function closeConfirm() {
+  document.getElementById('confirm-overlay').classList.remove('open');
+}
+
+/* ══════════════════════════════════════════════════════
+   LIGHTBOX
+══════════════════════════════════════════════════════ */
+function openLightbox(src, caption) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-caption').textContent = caption;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ══════════════════════════════════════════════════════
+   OPEN LINK
+══════════════════════════════════════════════════════ */
+function openLink(url) { window.open(url, '_blank'); }
+
+/* ══════════════════════════════════════════════════════
+   CHECKLIST — SESSION STORAGE
+══════════════════════════════════════════════════════ */
+function loadChecklist() {
+  const saved = sessionStorage.getItem('sk_checklist');
+  const checked = saved ? JSON.parse(saved) : [];
+  document.querySelectorAll('.sk-check-item').forEach(item => {
+    const id = parseInt(item.dataset.id);
+    if (checked.includes(id)) item.classList.add('checked');
+  });
+  updateCheckCount();
+}
+function saveChecklist() {
+  const checked = [];
+  document.querySelectorAll('.sk-check-item.checked').forEach(item => {
+    checked.push(parseInt(item.dataset.id));
+  });
+  sessionStorage.setItem('sk_checklist', JSON.stringify(checked));
+}
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  // GSAP bounce
+  if (typeof gsap !== 'undefined') {
+    gsap.from(el.querySelector('.sk-checkbox'), { scale: 0.6, duration: 0.25, ease: 'back.out(2)' });
+  }
+  saveChecklist();
+  updateCheckCount();
+}
+function updateCheckCount() {
+  const total = document.querySelectorAll('.sk-check-item').length;
+  const done = document.querySelectorAll('.sk-check-item.checked').length;
+  document.getElementById('check-count').textContent = done + ' / ' + total + ' सामग्री चेक की गई';
+}
+function resetChecklist() {
+  document.querySelectorAll('.sk-check-item').forEach(i => i.classList.remove('checked'));
+  sessionStorage.removeItem('sk_checklist');
+  updateCheckCount();
+}
+loadChecklist();
+
+/* ══════════════════════════════════════════════════════
+   PAGE LOADER — hide after 2s
+══════════════════════════════════════════════════════ */
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    const loader = document.getElementById('page-loader');
+    loader.classList.add('hide');
+    setTimeout(() => loader.style.display = 'none', 650);
+    // GSAP entrance animation on home header
+    if (typeof gsap !== 'undefined') {
+      gsap.from('.temple-logo-wrap', { scale: 0, rotation: -20, duration: 0.6, delay: 0.1, ease: 'back.out(1.8)' });
+      gsap.from('.header-title', { opacity: 0, y: 16, duration: 0.5, delay: 0.3 });
+      gsap.from('.header-badges .badge', { opacity: 0, y: 10, stagger: 0.12, duration: 0.4, delay: 0.45 });
     }
-    function nextSlide() { goTo(cur + 1); }
-    function prevSlide() { goTo(cur - 1); }
-    setInterval(nextSlide, 5000);
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            const target = document.querySelector(a.getAttribute('href'));
-            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-        });
-    });
+  }, 1800);
+});
 </script>
 </body>
 </html>
