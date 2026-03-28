@@ -1369,27 +1369,10 @@
        
     <div class="dev-note" style="margin-top:12px;">
         <i class="fa-solid fa-lightbulb" style="color:var(--saffron);margin-right:6px;"></i>
-        <a href="https://github.com/mrsatyamsoni/temple/raw/refs/heads/main/Hanumant-Mandir.apk" id="apk-link" style="color:var(--saffron);text-decoration:none;font-weight:600;cursor:pointer;">
+        <a href="https://github.com/mrsatyamsoni/temple/raw/refs/heads/main/Hanumant-Mandir.apk" style="color:var(--saffron);text-decoration:none;font-weight:600;cursor:pointer;">
             ऐप डाउनलोड करें (App Download/Update Kare)
         </a>
     </div>
-
-    <script>
-    document.getElementById('apk-link').addEventListener('click', function(e) {
-        const isApp = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && window.location.href.startsWith('file://');
-        if (isApp) {
-            e.preventDefault();
-            return false;
-        }
-    });
-
-    window.addEventListener('load', function() {
-        const isApp = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && window.location.href.startsWith('file://');
-        if (isApp) {
-            document.getElementById('apk-link').parentElement.style.display = 'none';
-        }
-    });
-    </script>
       </div>
 
       <!-- Instagram Card -->
